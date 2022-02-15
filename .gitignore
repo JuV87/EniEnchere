@@ -25,3 +25,5 @@ hs_err_pid*
 Servers
 */.settings
 EniEnchereCommun/.classpath
+EniEnchereWeb/.settings/org.eclipse.jdt.core.prefs
+EniEnchereWeb/.settings/org.eclipse.wst.common.project.facet.core.xml
