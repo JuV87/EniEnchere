@@ -22,11 +22,5 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /.metadata/
-*.prefs
-EniEnchereWeb/.classpath
-*.xml
 Servers
-EniEnchereCommun/.settings/org.eclipse.jdt.core.prefs
-EniEnchereWeb/.classpath
-EniEnchereWeb/.settings/org.eclipse.jdt.core.prefs
-EniEnchereWeb/.settings/org.eclipse.wst.common.project.facet.core.xml
+*/.settings
