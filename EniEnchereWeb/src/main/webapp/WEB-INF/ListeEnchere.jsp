@@ -9,6 +9,6 @@
 <body>
 
 	<h1>ENI-Enchère</h1>
-	<a href="./DeconnexionServlet">Déconnexion</a>
+	<a href="./HomeServlet">Déconnexion</a>
 </body>
 </html>

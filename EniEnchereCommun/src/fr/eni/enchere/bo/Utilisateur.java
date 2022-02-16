@@ -7,6 +7,7 @@ public abstract class Utilisateur  {
 	private int noUtilisateur;
 	private String pseudo;
 	private String nom;
+	private String prenom;
 	private String email;
 	private int telephone;
 	private String rue;
@@ -25,11 +26,12 @@ public abstract class Utilisateur  {
 	public Utilisateur() {
 		
 	}
-	public Utilisateur(int noUtilisateur, String pseudo, String nom, String email, int telephone, String rue, int codePostal, String ville, String motDePasse,
+	public Utilisateur(int noUtilisateur, String pseudo, String nom,String prenom, String email, int telephone, String rue, int codePostal, String ville, String motDePasse,
 						int credit, String administrateur) {
 		this.setNoUtilisateur(noUtilisateur);
 		this.setPseudo(pseudo);
 		this.setNom(nom);
+		this.setPrenom(prenom);
 		this.setEmail(email);
 		this.setTelephone(telephone);
 		this.setRue(rue);
@@ -60,6 +62,12 @@ public abstract class Utilisateur  {
 	}
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	public String getPrenom() {
+		return prenom;
+	}
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 	public String getEmail() {
 		return email;
@@ -128,6 +136,7 @@ public abstract class Utilisateur  {
 	public void setListEnchere(List<Enchere> listEnchere) {
 		this.listEnchere = listEnchere;
 	}
+	
 
 
 
