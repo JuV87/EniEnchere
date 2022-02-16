@@ -1,6 +1,8 @@
 package fr.eni.enchere.bo;
 
-public class Utilisateur {
+import java.util.List;
+
+public abstract class Utilisateur  {
 	
 	private int noUtilisateur;
 	private String pseudo;
@@ -15,13 +17,27 @@ public class Utilisateur {
 	private String administrateur;
 	
 	// Association class
-	private ArticleVendu vend, achete;
-	private Enchere encherit;
+	private List<ArticleVendu>  listVendu, ListeAcheter;
+	private List<Enchere> listEnchere;
 	
 	
-	
+	//constructeur
 	public Utilisateur() {
 		
+	}
+	public Utilisateur(int noUtilisateur, String pseudo, String nom, String email, int telephone, String rue, int codePostal, String ville, String motDePasse,
+						int credit, String administrateur) {
+		this.setNoUtilisateur(noUtilisateur);
+		this.setPseudo(pseudo);
+		this.setNom(nom);
+		this.setEmail(email);
+		this.setTelephone(telephone);
+		this.setRue(rue);
+		this.setCodePostal(codePostal);
+		this.setVille(ville);
+		this.setMotDePasse(motDePasse);
+		this.setCredit(credit);
+		this.setAdministrateur(administrateur);
 	}
 	
 	
@@ -93,23 +109,24 @@ public class Utilisateur {
 	public void setAdministrateur(String administrateur) {
 		this.administrateur = administrateur;
 	}
-	public ArticleVendu getVend() {
-		return vend;
+
+	public List<ArticleVendu> getListVendu() {
+		return listVendu;
 	}
-	public void setVend(ArticleVendu vend) {
-		this.vend = vend;
+	public void setListVendu(List<ArticleVendu> listVendu) {
+		this.listVendu = listVendu;
 	}
-	public ArticleVendu getAchete() {
-		return achete;
+	public List<ArticleVendu> getListeAcheter() {
+		return ListeAcheter;
 	}
-	public void setAchete(ArticleVendu achete) {
-		this.achete = achete;
+	public void setListeAcheter(List<ArticleVendu> listeAcheter) {
+		ListeAcheter = listeAcheter;
 	}
-	public Enchere getEncherit() {
-		return encherit;
+	public List<Enchere> getListEnchere() {
+		return listEnchere;
 	}
-	public void setEncherit(Enchere encherit) {
-		this.encherit = encherit;
+	public void setListEnchere(List<Enchere> listEnchere) {
+		this.listEnchere = listEnchere;
 	}
 
 
