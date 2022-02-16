@@ -20,8 +20,8 @@
 <body>
 
 	<h1>ENI-Enchère</h1>
-	<a>Vendre un article</a>
-	<a>Mon profil</a>
+	<a href="#">Vendre un article</a>
+	<a href="./ProfilServlet">Mon profil</a>
 	<a href="./HomeServlet">Déconnexion</a>
 </body>
 </html>

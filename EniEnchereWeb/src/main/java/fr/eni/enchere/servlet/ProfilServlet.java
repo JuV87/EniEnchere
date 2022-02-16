@@ -6,19 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class DeconexionServlet
+ * Servlet implementation class Profil
  */
-@WebServlet("/DeconnexionServlet")
-public class DeconnexionServlet extends HttpServlet {
+@WebServlet("/ProfilServlet")
+public class ProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeconnexionServlet() {
+    public ProfilServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,17 +26,14 @@ public class DeconnexionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		session.invalidate();            
-		request.getRequestDispatcher("/WEB-INF/ListeEnchere.jsp").forward(request,response); 
+		request.getRequestDispatcher("/WEB-INF/Profil.jsp").forward(request,response); 
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		doGet(request, response);
 	}
 

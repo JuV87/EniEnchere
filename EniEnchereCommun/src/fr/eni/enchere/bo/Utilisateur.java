@@ -41,6 +41,20 @@ public class Utilisateur  {
 		this.setCredit(credit);
 		this.setAdministrateur(administrateur);
 	}
+	public Utilisateur( String pseudo, String nom,String prenom, String email, int telephone, String rue, int codePostal, String ville, String motDePasse,
+			int credit, String administrateur) {
+		this.setPseudo(pseudo);
+		this.setNom(nom);
+		this.setPrenom(prenom);
+		this.setEmail(email);
+		this.setTelephone(telephone);
+		this.setRue(rue);
+		this.setCodePostal(codePostal);
+		this.setVille(ville);
+		this.setMotDePasse(motDePasse);
+		this.setCredit(credit);
+		this.setAdministrateur(administrateur);
+}
 	
 	
 	
