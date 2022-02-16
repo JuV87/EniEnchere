@@ -2,7 +2,7 @@ package fr.eni.enchere.bo;
 
 import java.util.List;
 
-public abstract class Utilisateur  {
+public class Utilisateur  {
 	
 	private int noUtilisateur;
 	private String pseudo;
