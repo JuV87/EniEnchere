@@ -30,10 +30,6 @@
                 <label for="disabledSelect" class="col-form-label">Catégories</label>
                 <select id="disabledSelect" class="form-select">
                     <option id="toutes">Toutes</option>
-                    <option id="véhicules">Véhicules</option>
-                    <option id="mobiliers">Mobiliers</option>
-                    <option id="animaux">Animaux</option>
-                    <option id="informatiques">Informatiques</option>
                 </select>
 
 
