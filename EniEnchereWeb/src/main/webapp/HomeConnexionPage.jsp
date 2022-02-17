@@ -20,20 +20,67 @@
     </head>
     <div class="form-control">
         <h1>ENI-Enchère</h1>
-        <a href="/EniEnchereWeb/LoginServlet">S'inscrire - Se connecter</a>
+         <dd><a href="#">Vendre un article</a></dd>
+         <dd><a href="/EniEnchereWeb/MonProfilServlet">Mon profil</a></dd>
+         <dd><a href="/EniEnchereWeb/DeconnexionServlet">S'inscrire - Se connecter</a></dd>
+
     </div>
 
     <body>
         <div class="form-control">
             <div class="mb-3">
                 <h3>Filtres:</h3>
+                
+<h6>Achats:</h6>
+<dd>
+<div>
+  <input type="radio" id="enchères ouvertes" name="drone2" value="enchères ouvertes">
+  <label for="enchères ouvertes">enchères ouvertes</label>
+</div>
+
+<div>
+  <input type="radio" id="mes enchéres en cours" name="drone2" value="mes enchéres en cours">
+  <label for="mes enchéres en cours">mes enchéres en cours</label>
+  
+</div>
+<div>
+  <input type="radio" id="mes enchères remportées" name="drone2" value="mes enchères remportées"
+         checked>
+  <label for="mes enchères remportées">mes enchères remportées</label>
+  </dd>
+</div>
+
+
+<h6>Mes ventes:</h6>
+<div>
+  <input type="radio" id="mes ventes en cours" name="drone2" value="mes ventes en cours">
+  <label for="mes ventes en cours">mes ventes en cours</label>
+</div>
+
+<div>
+  <input type="radio" id="ventes non débutées" name="drone2" value="ventes non débutées">
+  <label for="ventes non débutées">ventes non débutées</label>
+</div>
+
+<div>
+  <input type="radio" id="ventes terminées" name="drone2" value="ventes terminées">
+  <label for="ventes terminées">ventes terminées</label>
+</div>
+
+
+ 
+____________________________________________________________________________
+
+     
+                
                 <label for="disabledSelect" class="col-form-label">Catégories</label>
                 <select id="disabledSelect" class="form-select">
-                    <option id="toutes">Toutes</option>
-                    <option id="véhicules">Véhicules</option>
-                    <option id="mobiliers">Mobiliers</option>
-                    <option id="animaux">Animaux</option>
-                    <option id="informatiques">Informatiques</option>
+                    <option>Toutes</option>
+                    <option>????</option>
+                    <option>????</option>
+                    <option>????</option>
+                    <option>????</option>
+                    <option>????</option>
                 </select>
 
 
