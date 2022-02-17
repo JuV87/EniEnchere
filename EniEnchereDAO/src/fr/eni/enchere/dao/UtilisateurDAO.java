@@ -20,6 +20,9 @@ public interface UtilisateurDAO {
 
 	//Supprimer un utilisateur
 	public void delete(int id) throws DALException;
+	
+	// Trouver un utilisateur dans la base de données
+	public boolean findUser(String i, String j) throws DALException;
 
 }
 

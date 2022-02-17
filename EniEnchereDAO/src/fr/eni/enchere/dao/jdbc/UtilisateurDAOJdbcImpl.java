@@ -16,7 +16,7 @@ import java.util.List;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dao.DALException;
 import fr.eni.enchere.dao.UtilisateurDAO;
-import fr.eni.enchere.dao.ConnectionProvider;
+
 
 /**
  * @author Eni Ecole
@@ -26,13 +26,13 @@ import fr.eni.enchere.dao.ConnectionProvider;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
-	private static final String sqlSelectById = "select noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur " +
-			" from utilisateurs where noUtilisateur = ?";
-	private static final String sqlSelectAll = "select noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur " +  
-			" from utilisateurs";
-	private static final String sqlUpdate = "update utilisateurs set pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,codePostal=?, ville=?, motDePasse=?, credit=?, cadministrateur=? where noUtilisateur=?";
-	private static final String sqlInsert = "insert into utilisateurs(pseudo,nom,prenom,email,telephone,rue,codePostal,ville, motDePasse, credit, administrateur) values(?,?,?,?,?,?,?,?,?,?,?)";
-	private static final String sqlDelete = "delete from utilisateurs where noUtilisateur=?";
+	private static final String sqlSelectById = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur " +
+			" FROM utilisateurs where no_utilisateur = ?";
+	private static final String sqlSelectAll = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur " +  
+			" FROM utilisateurs";
+	private static final String sqlUpdate = "UPDATE utilisateurs SET pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?, ville=?, mot_de_passe=?, credit=?, cadministrateur=? where no_utilisateur=?";
+	private static final String sqlInsert = "INSERT INTO utilisateurs(pseudo,nom,prenom,email,telephone,rue,code_postal,ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String sqlDelete = "DELETE FROM utilisateurs WHERE no_utilisateur=?";
 
 	
 
@@ -43,7 +43,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		ResultSet rs = null;
 		List<Utilisateur> listeDeTousLesUtilisateurs = new ArrayList<Utilisateur>();
 		try {
-			cnx = ConnectionProvider.getConnection();
+			cnx = JdbcTools.getConnection();
 			rqt = cnx.createStatement();
 			rs = rqt.executeQuery(sqlSelectAll);
 			Utilisateur user = null;
@@ -51,18 +51,18 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			while (rs.next()) {
 			
 
-					user = new Utilisateur(rs.getInt("noUtilisateur"),
+					user = new Utilisateur(rs.getInt("no_utilisateur"),
 							rs.getString("pseudo"),
 							rs.getString("nom"),
 							rs.getString("prenom"),
 							rs.getString("email"),
 							rs.getString("telephone"),
 							rs.getString("rue"),
-							rs.getInt("codePostal"),
+							rs.getString("code_postal"),
 							rs.getString("ville"),
-							rs.getString("motDePasse"),
+							rs.getString("mot_de_passe"),
 							rs.getInt("credit"),
-							rs.getString("administrateur"));
+							rs.getInt("administrateur"));
 					
 				
 		listeDeTousLesUtilisateurs.add(user);
@@ -105,18 +105,18 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			rs = rqt.executeQuery();
 			if (rs.next()){
 
-				user = new Utilisateur(rs.getInt("noUtilisateur"),
+				user = new Utilisateur(rs.getInt("no_utilisateur"),
 						rs.getString("pseudo"),
 						rs.getString("nom"),
 						rs.getString("prenom"),
 						rs.getString("email"),
 						rs.getString("telephone"),
 						rs.getString("rue"),
-						rs.getInt("codePostal"),
+						rs.getString("code_postal"),
 						rs.getString("ville"),
-						rs.getString("motDePasse"),
+						rs.getString("mot_de_passe"),
 						rs.getInt("credit"),
-						rs.getString("administrateur"));
+						rs.getInt("administrateur"));
 
 			}
 
@@ -147,7 +147,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
-			cnx = ConnectionProvider.getConnection();
+			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlUpdate);
 			rqt.setInt(1, user.getNoUtilisateur());
 			rqt.setString(2, user.getPseudo());
@@ -156,11 +156,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			rqt.setString(5, user.getEmail());
 			rqt.setString(6, user.getTelephone());
 			rqt.setString(7, user.getRue());
-			rqt.setInt(8, user.getCodePostal());
+			rqt.setString(8, user.getCodePostal());
 			rqt.setString(9, user.getVille());
 			rqt.setString(10, user.getMotDePasse());
 			rqt.setInt(11, user.getCredit());
-			rqt.setString(12, user.getAdministrateur());
+			rqt.setInt(12, user.getAdministrateur());
 
 			rqt.executeUpdate();
 
@@ -185,8 +185,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 		Connection cnx = null;
 		PreparedStatement rqt = null;
+		boolean success =false;
 		try {
-			cnx = ConnectionProvider.getConnection();
+			
+			cnx = JdbcTools.getConnection();
+			cnx.setAutoCommit(false);
 			rqt = cnx.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
 
 			rqt.setString(1, user.getPseudo());
@@ -195,11 +198,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			rqt.setString(4, user.getEmail());
 			rqt.setString(5, user.getTelephone());
 			rqt.setString(6, user.getRue());
-			rqt.setInt(7, user.getCodePostal());
+			rqt.setString(7, user.getCodePostal());
 			rqt.setString(8, user.getVille());
 			rqt.setString(9, user.getMotDePasse());
 			rqt.setInt(10, user.getCredit());
-			rqt.setString(11, user.getAdministrateur());
+			rqt.setInt(11, user.getAdministrateur());
 
 			int nbRows = rqt.executeUpdate();
 			if(nbRows == 1){
@@ -209,9 +212,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				}
 
 			}
-
+			cnx.commit();
 		}catch(SQLException e){
-			throw new DALException("Insert article failed - " + user, e);
+			throw new DALException("Insert utilisateur failed - " + user, e);
 		}
 		finally {
 			try {
@@ -220,7 +223,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				}
 				if(cnx!=null){
 					cnx.close();
-				}
+				} 
 			} catch (SQLException e) {
 				throw new DALException("close failed - ", e);
 			}
@@ -233,7 +236,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {		
-			cnx = ConnectionProvider.getConnection();
+			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlDelete);
 			rqt.setInt(1, id);
 			rqt.executeUpdate();
@@ -253,6 +256,28 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 		}
 	}
+	
+	public boolean findUser(String i, String j) throws DALException {  
+
+		boolean status=false;  
+		try{  
+
+			Connection con=JdbcTools.getConnection();     
+			PreparedStatement ps=con.prepareStatement(  
+					"select * from utilisateurs where pseudo=? and mot_de_passe=?");  
+
+			ps.setString(1,i);  
+			ps.setString(2,j);  
+
+			ResultSet rs=ps.executeQuery();  
+			if (rs.next()) {
+				status = true;
+			}
+
+		}catch(Exception e){System.out.println(e);}  
+		return status;  
+	}  
+
 
 }
 

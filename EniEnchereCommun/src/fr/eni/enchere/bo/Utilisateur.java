@@ -11,11 +11,11 @@ public class Utilisateur  {
 	private String email;
 	private String telephone;
 	private String rue;
-	private int codePostal;
+	private String codePostal;
 	private String ville;
 	private String motDePasse;
 	private int credit;
-	private String administrateur;
+	private int administrateur;
 	
 	// Association class
 	private List<ArticleVendu>  listVendu, ListeAcheter;
@@ -26,8 +26,8 @@ public class Utilisateur  {
 	public Utilisateur() {
 		
 	}
-	public Utilisateur(int noUtilisateur, String pseudo, String nom,String prenom, String email, String telephone, String rue, int codePostal, String ville, String motDePasse,
-						int credit, String administrateur) {
+	public Utilisateur(int noUtilisateur, String pseudo, String nom,String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse,
+						int credit, int administrateur) {
 		this.setNoUtilisateur(noUtilisateur);
 		this.setPseudo(pseudo);
 		this.setNom(nom);
@@ -41,8 +41,8 @@ public class Utilisateur  {
 		this.setCredit(credit);
 		this.setAdministrateur(administrateur);
 	}
-	public Utilisateur( String pseudo, String nom,String prenom, String email, String telephone, String rue, int codePostal, String ville, String motDePasse,
-			int credit, String administrateur) {
+	public Utilisateur( String pseudo, String nom,String prenom, String email, String telephone, String rue, String codePostal, String ville, String motDePasse,
+			int credit, int administrateur) {
 		this.setPseudo(pseudo);
 		this.setNom(nom);
 		this.setPrenom(prenom);
@@ -101,11 +101,11 @@ public class Utilisateur  {
 	public void setRue(String rue) {
 		this.rue = rue;
 	}
-	public int getCodePostal() {
+	public String getCodePostal() {
 		return codePostal;
 	}
-	public void setCodePostal(int codePostal) {
-		this.codePostal = codePostal;
+	public void setCodePostal(String codePostal2) {
+		this.codePostal = codePostal2;
 	}
 	public String getVille() {
 		return ville;
@@ -125,11 +125,11 @@ public class Utilisateur  {
 	public void setCredit(int credit) {
 		this.credit = credit;
 	}
-	public String getAdministrateur() {
+	public int getAdministrateur() {
 		return administrateur;
 	}
-	public void setAdministrateur(String administrateur) {
-		this.administrateur = administrateur;
+	public void setAdministrateur(int administrateur2) {
+		this.administrateur = administrateur2;
 	}
 
 	public List<ArticleVendu> getListVendu() {
@@ -150,8 +150,15 @@ public class Utilisateur  {
 	public void setListEnchere(List<Enchere> listEnchere) {
 		this.listEnchere = listEnchere;
 	}
+	@Override
+	public String toString() {
+		return "Utilisateur [noUtilisateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
+				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
+				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
+				+ ", administrateur=" + administrateur + "]";
+	}
 	
-
+	
 
 
 	

@@ -37,7 +37,8 @@ public class HomeServlet extends HttpServlet {
 
 	private void rechercher (HttpServletRequest request, HttpServletResponse response) {
 		String disabledSelect =request.getParameter("disabledSelect");
-				
+	}
+	/*			
 		if (disabledSelect== "toutes") {
 			HttpSession ses;
 			List<Article> catégorie;
@@ -65,7 +66,7 @@ public class HomeServlet extends HttpServlet {
 		}				
 	}
 	
-/*
+
 
 */	
 	

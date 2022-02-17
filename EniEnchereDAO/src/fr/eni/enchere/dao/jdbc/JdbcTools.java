@@ -34,20 +34,8 @@ public class JdbcTools {
 	
 	
 	public static Connection getConnection() throws SQLException{
-		//Connection connection = DriverManager.getConnection(urldb);
-		Connection cnx = DriverManager.getConnection(urldb, userdb, passworddb);
-		/*InitialContext ctx=null;
-		DataSource ds=null;
-		 Connection cnx=null;
-		try {
-			ctx=new InitialContext();
-		    ds=(DataSource)ctx.lookup("java:comp/env/jdbc/poolCnx");
-		   	cnx=ds.getConnection();
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		
+		String url = String.format("%s;user=%s;password=%s;encrypt=true;trustServerCertificate=true", urldb, userdb, passworddb);  
+		Connection cnx = DriverManager.getConnection(url);
 		
 		return cnx;
 	}

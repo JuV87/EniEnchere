@@ -21,14 +21,14 @@
 	<form method="post" action="/LoginServlet">
 		<div style="padding: 0.5rem">
 			<!-- Input Id -->
-	<div class="mb-3">
+	<div class="mb-3 text-align:center">
 		<label for="pseudo" class="form-label">Identifiant</label> <input
 			type="text" class="form-control" name="pseudo">
 	</div>
 	<!-- Input Id -->
 
 	<!-- Input Password -->
-			<div class="mb-3">
+			<div class="mb-3 text-align:center">
 				<label for="password" class="form-label">Mot de passe</label> <input
 					type="password" class="form-control" name="password">
 			</div>
@@ -40,14 +40,14 @@
 				<div class="row">
 					<div class="col-sm-6">
 
-						<button type="submit" value="connexion" name="connexion"
+						<button type="submit" value="login" name="connexion"
 							class="btn w-100 btn-primary">Connexion</button>
 
 					</div>
 					<div class="col-sm-6">
 						<div class="form-check">
 							<input type="checkbox" class="form-check-input" id="check">
-							<label class="form-check-label" for="check">Se souvenir
+							<label class="form-check-input" for="check">Se souvenir
 								de moi</label>
 						</div>
 						<a href="forgottenpassword">Mot de passe oublié</a>
@@ -56,9 +56,10 @@
 			<!-- Créer un compte -->
 			</div>
 			<br><br>
-			<div>
-				<button type="submit" name="createaccount" class="btn btn-info btn-lg text-white w-100">Créer
-					un compte</button>
+			<div >
+			<label class="text-align:center">Créer un compte</label>
+				<input  type="submit" name="createaccount" class="btn btn-info btn-lg text-white">
+				Créer un compte</>
 			</div>
 			<!-- Créer un compte -->
 		</div>

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchere.bo.Utilisateur;
+
 /**
  * Servlet implementation class LoginServlet
  */
@@ -37,14 +39,19 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
+	/*
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pseudo = request.getParameter("pseudo");
-		String motDePasse = request.getParameter("motDePasse");
+		String motDePasse = request.getParameter("password");
 		
-		/*
-		UserAccount userAccount = DataDAO.findUser(username, password);
+		
+		
+		
+		
+		Utilisateur user = user.findUser(pseudo, password);
 
-		if (userAccount == null) {
+		if (user == null) {
 			String errorMessage = "Identifiant et/ou mot de passe incorrect(s)";
 
 			request.setAttribute("errorMessage", errorMessage);
@@ -55,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			return;
 		}
-		*/
+		
 	}
-
+ */
 }
