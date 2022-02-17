@@ -15,22 +15,11 @@
 
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ListeEnchere</title>
+<title>Vendre article</title>
 </head>
 <body>
 	<h1>ENI-Enchère</h1>
-	<div style="padding: 1rem">
-		<div>
-			<a href="./VendreArticleServlet" class="col-sm-3">Vendre un article</a>
-		</div>
-		<div>
-			<a href="./ProfilServlet">Mon profil</a>
-		</div>
-		<div>
-			<a href="./HomeServlet">Déconnexion</a>
-		</div>
-		
-		
-	</div>
+	
+	
 </body>
 </html>

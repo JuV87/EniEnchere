@@ -22,73 +22,48 @@
 	<div class="col text-center">
 		<h2>Pseudo</h2>
 	</div>
+	<div style="padding: 1rem">
 	<div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Pseudo :</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      Kenneth Valdez
+                      <h6 class="mb-0" style="padding: 1rem">Pseudo :</h6>
                     </div>
                   </div>
-                  <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Nom :</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      fip@jukmuh.al
+                      <h6 class="mb-0" style="padding: 1rem">Nom :</h6>
                     </div>
                   </div>
-                  <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Prénom :</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      (239) 816-9029
+                      <h6 class="mb-0" style="padding: 1rem">Prénom :</h6>
                     </div>
                   </div>
-                  <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Mobile :</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      (320) 380-4539
+                      <h6 class="mb-0" style="padding: 1rem">Mobile :</h6>
                     </div>
                   </div>
-                  <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Rue :</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      Bay Area, San Francisco, CA
+                      <h6 class="mb-0" style="padding: 1rem">Rue :</h6>
                     </div>
                   </div>
-                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Code postal :</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      Bay Area, San Francisco, CA
+                      <h6 class="mb-0" style="padding: 1rem">Code postal :</h6>
                     </div>
                   </div>
-                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Ville :</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      Bay Area, San Francisco, CA
+                      <h6 class="mb-0" style="padding: 1rem">Ville :</h6>
                     </div>
                   </div>
-                  <hr>
+                  </div>
 	
 	<div class="col text-center">
-		<button type="button" class="btn btn-primary center-block " data-bs-toggle="button" autocomplete="off"
-            aria-pressed="true">Modifier </button>
+      <button  onclick="window.location.href = './MonProfilServlet';" type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off"
+            aria-pressed="true">Modifier
+       </button>
 	</div>
 	
 	
