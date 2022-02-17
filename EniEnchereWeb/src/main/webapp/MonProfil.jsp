@@ -20,87 +20,90 @@
   </head>
 
   <body>
+  <form method="post" action="inscription">
+   <fieldset>
     <div class="monprofildiv">
       <h1>Mon profil</h1>
       <form>
         <div class="mb-3">
-          <label for=" " class="form-label">Pseudo</label>
-          <input type="text" class="form-control" id="" aria-describedby="Pseudo">
+          <label for="pseudo" class="form-label">Pseudo</label>
+          <input type="text" class="form-control" id="Pseudo" aria-describedby="Pseudo">
 
         </div>
         <div class="mb-3">
-          <label for="" class="form-label">Nom</label>
-          <input type="text" class="form-control" id="">
-        </div>
-
-
-
-        <div class="mb-3">
-          <label for="" class="form-label">Prenom</label>
-          <input type="text" class="form-control" id="">
+          <label for="nom" class="form-label">Nom</label>
+          <input type="text" class="form-control" id="Nom">
         </div>
 
 
 
         <div class="mb-3">
-          <label for="" class="form-label">Email</label>
-          <input type="email" class="form-control" id="">
-        </div>
-
-
-        <div class="mb-3">
-          <label for="" class="form-label">Telephone</label>
-          <input type="telephone" class="form-control" id="">
-        </div>
-
-
-        <div class="mb-3">
-          <label for="" class="form-label">Rue</label>
-          <input type="text" class="form-control" id="">
+          <label for="prenom" class="form-label">Prenom</label>
+          <input type="text" class="form-control" id="Prenom">
         </div>
 
 
 
         <div class="mb-3">
-          <label for="" class="form-label">Code postal</label>
-          <input type="text" class="form-control" id="">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="Email">
         </div>
 
 
         <div class="mb-3">
-          <label for="" class="form-label">Ville</label>
-          <input type="text" class="form-control" id="">
+          <label for="telephone" class="form-label">Telephone</label>
+          <input type="telephone" class="form-control" id="Telephone">
         </div>
 
 
         <div class="mb-3">
-          <label for="" class="form-label">Mot De Passe </label>
-          <input type="password" class="form-control" id="">
+          <label for="rue" class="form-label">Rue</label>
+          <input type="text" class="form-control" id="Nom de la rue">
+        </div>
+
+
+
+        <div class="mb-3">
+          <label for="codepostal" class="form-label">Code postal</label>
+          <input type="text" class="form-control" id="Code postal">
         </div>
 
 
         <div class="mb-3">
-          <label for="" class="form-label">Confirmation</label>
-          <input type="password" class="form-control" id="">
+          <label for="ville" class="form-label">Ville</label>
+          <input type="text" class="form-control" id="Nom de la ville">
+        </div>
+
+
+        <div class="mb-3">
+          <label for="motdepasse" class="form-label">Mot De Passe </label>
+          <input type="password" class="form-control" id="Mot de passe">
+        </div>
+
+
+        <div class="mb-3">
+          <label for="confirmation" class="form-label">Confirmation</label>
+          <input type="password" class="form-control" id="Confirmation">
         </div>
         <div class="row">
           <div class="col">
-            <input type="text" class="form-control" placeholder="Credit" aria-label="Credit">
+            <input type="text" class="form-control"  aria-label="Credit">
           </div>
           <div class="col">
-            <input type="text" class="form-control" placeholder="Last name" aria-label="">
+            <input type="text" class="form-control"  aria-label="Montant">
           </div>
         </div>
         <div>
-          <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">Enregistrer</button>
-          <button type="button" class="btn btn-primary " data-bs-toggle="button" autocomplete="off"
+          <button for="enregistrer" type="button" class="btn btn-primary" >Enregistrer</button>
+          <button for="supprimercompte" type="button" class="btn btn-primary " data-bs-toggle="button" autocomplete="off"
             aria-pressed="true">Supprimer mon compte </button>
-          <button type="button" class="btn btn-primary" disabled data-bs-toggle="button"
+          <button for="retour" type="button" class="btn btn-primary" disabled data-bs-toggle="button"
             autocomplete="off">Retour</button>
         </div>
+        </fieldset>
       </form>
     </div>
-
+</form>
 
   </body>
 

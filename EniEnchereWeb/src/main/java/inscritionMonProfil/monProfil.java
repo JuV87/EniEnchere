@@ -1,4 +1,4 @@
-package fr.eni.enchere.servlet;
+package inscritionMonProfil;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,18 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MonProfilServlet
+ * Servlet implementation class monProfil
  */
-@WebServlet("/MonProfilServlet")
-public class MonProfilServlet extends HttpServlet {
+@WebServlet("/monProfil")
+public class monProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
-     * @see HttpServlet#HttpServlet()
+     * Default constructor. 
      */
-    public MonProfilServlet() {
-        super();
-       
+    public monProfil() {
+        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -27,7 +26,7 @@ public class MonProfilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		getServletContext().getRequestDispatcher("/MonProfil.jsp").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -35,17 +34,7 @@ public class MonProfilServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String pseudo = request.getParameter("pseudo");
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		String email = request.getParameter("email");
-		String telephone = request.getParameter("telephone");
-		String rue = request.getParameter("rue");
-		String codepostal = request.getParameter("code postal");
-		String ville = request.getParameter("nom de la ville");
+		doGet(request, response);
 	}
 
-	
-	
-	
 }
