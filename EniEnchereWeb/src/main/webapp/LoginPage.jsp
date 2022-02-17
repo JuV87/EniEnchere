@@ -17,20 +17,20 @@
 <body>
 
 	<h1>ENI - Enchères</h1>
-
-	<form method="post" action="index">
+	<!-- action c'est l'URL de la servlet --!>
+	<form method="post" action="/LoginServlet">
 		<div style="padding: 0.5rem">
 			<!-- Input Id -->
-			<div class="mb-3">
-				<label for="pseudo" class="form-label">Identifiant</label> <input
-					type="text" class="form-control" id="pseudo">
-			</div>
-			<!-- Input Id -->
+	<div class="mb-3">
+		<label for="pseudo" class="form-label">Identifiant</label> <input
+			type="text" class="form-control" name="pseudo">
+	</div>
+	<!-- Input Id -->
 
-			<!-- Input Password -->
+	<!-- Input Password -->
 			<div class="mb-3">
-				<label for="inputPassword" class="form-label">Mot de passe</label> <input
-					type="password" class="form-control" id="motDePasse">
+				<label for="password" class="form-label">Mot de passe</label> <input
+					type="password" class="form-control" name="password">
 			</div>
 			<!-- Input Password -->
 			<br>
@@ -40,7 +40,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 
-						<button type="submit" value="Connexion"
+						<button type="submit" value="connexion" name="connexion"
 							class="btn w-100 btn-primary">Connexion</button>
 
 					</div>
@@ -50,14 +50,14 @@
 							<label class="form-check-label" for="check">Se souvenir
 								de moi</label>
 						</div>
-						<a href="motDePasseOublie">Mot de passe oublié</a>
+						<a href="forgottenpassword">Mot de passe oublié</a>
 					</div>
 				</div>
 			<!-- Créer un compte -->
 			</div>
 			<br><br>
 			<div>
-				<button type="submit" class="btn btn-info btn-lg text-white w-100">Créer
+				<button type="submit" name="createaccount" class="btn btn-info btn-lg text-white w-100">Créer
 					un compte</button>
 			</div>
 			<!-- Créer un compte -->
