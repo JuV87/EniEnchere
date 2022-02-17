@@ -3,12 +3,15 @@ package fr.eni.enchere.servlet;
 import java.io.IOException;
 import java.util.List;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import fr.eni.enchere.bo.ArticleVendu;
 
 
 /**
@@ -40,28 +43,19 @@ public class HomeServlet extends HttpServlet {
 				
 		if (disabledSelect== "toutes") {
 			HttpSession ses;
-			List<Article> catégorie;
+			List<ArticleVendu> listeCategorieArticle;
 			ses=request.getSession();
-			catégorie=(List<Article>)ses.getAttribute("maCatégorie");
-			request.setAttribute("catégorie",catégorie);
-			getServletContext().getRequestDispatcher("/WEB-INF/catégorie.jsp").forward(request, response);
-			
-		}
-		if (disabledSelect== "Véhicules") {
-			
-			
-		}
-		if (disabledSelect== "Mobilier") {
-			
-			
-		}
-		if (disabledSelect== "Animaux") {
-			
-			
-		}		
-		if (disabledSelect== "Informatiques") {
-			
-			
+			listeCategorieArticle=(List<ArticleVendu>)ses.getAttribute("maCatégorie");
+			request.setAttribute("catégorie",listeCategorieArticle);
+			try {
+				getServletContext().getRequestDispatcher("/WEB-INF/#.jsp").forward(request, response);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
 		}				
 	}
 	
