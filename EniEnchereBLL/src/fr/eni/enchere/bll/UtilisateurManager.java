@@ -2,6 +2,7 @@ package fr.eni.enchere.bll;
 
 import java.util.List;
 
+import fr.eni.enchere.bll.utils.EniConstantes;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dao.DALException;
 import fr.eni.enchere.dao.DAOFactory;
@@ -13,7 +14,7 @@ public class UtilisateurManager {
 	private  UtilisateurDAO utilisateurDAO;
 
 	public UtilisateurManager() {
-		this.utilisateurDAO=DAOFactory.getUtilisateurDAO();
+		this.utilisateurDAO=DAOFactory.getInstance().getUtilisateurDAO();
 	}
 
 	public List<Utilisateur> selectionnerTousLesUtilisateurs() throws BusinessException, Exception
@@ -32,27 +33,32 @@ public class UtilisateurManager {
 		return user;
 	}
 
-	public void ajouterUtilisateur(Utilisateur newUtilisateur) {	
+	public EniResponse ajouterUtilisateur(Utilisateur newUtilisateur) {	
+		boolean success = false;
 		try {	
-			DAOFactory.getUtilisateurDAO().insert(newUtilisateur);
+			success =DAOFactory.getInstance().getUtilisateurDAO().insert(newUtilisateur);
 		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		EniResponse response = new EniResponse(EniConstantes.CODE_SUCCESS, "Inscription avec succès!");
+		if (!success) {
+			response.setResponse(EniConstantes.CODE_ERROR_TECH, "Impossible d'insérer l'utilisateur dans la BDD");
 
+		}
+		return response;
+	}
+
+
+	public void supprimerUtilisateur(int noUtilisateur) throws BusinessException{
+		try {
+			this.utilisateurDAO.delete(noUtilisateur);
+		} catch (DALException e) {
+			e.printStackTrace();
 		}
 	}
 
 
-		
 
-		public void supprimerUtilisateur(int noUtilisateur) throws BusinessException{
-			try {
-				this.utilisateurDAO.delete(noUtilisateur);
-			} catch (DALException e) {
-				e.printStackTrace();
-			}
-		}
-	
-	
-			
-	}
+}
 
 

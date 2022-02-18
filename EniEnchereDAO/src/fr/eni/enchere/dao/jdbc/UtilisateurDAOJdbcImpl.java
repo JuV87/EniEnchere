@@ -181,11 +181,12 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public void insert(Utilisateur user) throws DALException {
+	public boolean insert(Utilisateur user) throws DALException {
 
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		boolean success =false;
+		ResultSet rs = null;
 		try {
 			
 			cnx = JdbcTools.getConnection();
@@ -204,32 +205,39 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			rqt.setInt(10, user.getCredit());
 			rqt.setInt(11, user.getAdministrateur());
 
-			int nbRows = rqt.executeUpdate();
-			if(nbRows == 1){
-				ResultSet rs = rqt.getGeneratedKeys();
-				if(rs.next()){
-					user.setNoUtilisateur(rs.getInt(1));
+			int result = rqt.executeUpdate();
+			if(result == 1){
+				ResultSet resultset = rqt.getGeneratedKeys();
+				if(resultset.next()){
+					user.setNoUtilisateur(resultset.getInt(1));
+
+				}
+				success=true;
+			}
+
+
+		}catch(SQLException e){
+			throw new DALException("Insert utilisateur failed", e);
+		}finally {
+			try {
+				if (rs != null){
+					rs.close();
 				}
 
-			}
-			cnx.commit();
-		}catch(SQLException e){
-			throw new DALException("Insert utilisateur failed - " + user, e);
-		}
-		finally {
-			try {
 				if (rqt != null){
 					rqt.close();
 				}
 				if(cnx!=null){
 					cnx.close();
+				}
+				}catch (SQLException e) {
+					e.printStackTrace();
 				} 
-			} catch (SQLException e) {
-				throw new DALException("close failed - ", e);
+
 			}
+		return success;
 
 		}
-	}
 
 	@Override
 	public void delete(int id) throws DALException {

@@ -16,7 +16,7 @@ public interface UtilisateurDAO {
 	public void update(Utilisateur user) throws DALException;
 
 	//Insérer un nouvel utilisateur dans la BDD
-	public void insert(Utilisateur user) throws DALException;
+	public boolean insert(Utilisateur user) throws DALException;
 
 	//Supprimer un utilisateur
 	public void delete(int id) throws DALException;

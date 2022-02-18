@@ -9,7 +9,7 @@ public class AppliTestDAO {
 
 	public static void main(String[] args) throws DALException {
 		// TODO Auto-generated method stub
-		UtilisateurDAO userDAO = DAOFactory.getUtilisateurDAO();
+		UtilisateurDAO userDAO = DAOFactory.getInstance().getUtilisateurDAO();
 
 		
 		Utilisateur utilisateur = new Utilisateur("bob", "Vérité", "Julie", "veriteju@gmail.com", "0546092358", "3 rue de la plage", "17137", "La Rochelle", "gjregj", 150, 1);
