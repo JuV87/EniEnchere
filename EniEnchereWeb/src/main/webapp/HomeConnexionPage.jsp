@@ -20,9 +20,9 @@
     </head>
     <div class="form-control">
         <h1>ENI-Enchère</h1>
-         <dd><a href="#">Vendre un article</a></dd>
-         <dd><a href="/EniEnchereWeb/MonProfilServlet">Mon profil</a></dd>
-         <dd><a href="/EniEnchereWeb/DeconnexionServlet">S'inscrire - Se connecter</a></dd>
+        <dd><a href="/EniEnchereWeb/VendreArticleServlet">Vendre un article</a></dd>
+        <dd><a href="/EniEnchereWeb/MonProfilServlet">Mon profil</a></dd>
+        <dd><a href="/EniEnchereWeb/LoginServlet">S'inscrire - Se connecter</a></dd>
 
     </div>
 
@@ -30,57 +30,51 @@
         <div class="form-control">
             <div class="mb-3">
                 <h3>Filtres:</h3>
-                
-<h6>Achats:</h6>
-<dd>
-<div>
-  <input type="radio" id="enchères ouvertes" name="drone2" value="enchères ouvertes">
-  <label for="enchères ouvertes">enchères ouvertes</label>
-</div>
 
-<div>
-  <input type="radio" id="mes enchéres en cours" name="drone2" value="mes enchéres en cours">
-  <label for="mes enchéres en cours">mes enchéres en cours</label>
-  
-</div>
-<div>
-  <input type="radio" id="mes enchères remportées" name="drone2" value="mes enchères remportées"
-         checked>
-  <label for="mes enchères remportées">mes enchères remportées</label>
-  </dd>
-</div>
+                <h6>Achats:</h6>
+                <dd>
+                    <div>
+                        <input type="radio" id="enchères ouvertes" name="drone2" value="enchères ouvertes">
+                        <label for="enchères ouvertes">enchères ouvertes</label>
+                    </div>
 
+                    <div>
+                        <input type="radio" id="mes enchéres en cours" name="drone2" value="mes enchéres en cours">
+                        <label for="mes enchéres en cours">mes enchéres en cours</label>
 
-<h6>Mes ventes:</h6>
-<div>
-  <input type="radio" id="mes ventes en cours" name="drone2" value="mes ventes en cours">
-  <label for="mes ventes en cours">mes ventes en cours</label>
-</div>
-
-<div>
-  <input type="radio" id="ventes non débutées" name="drone2" value="ventes non débutées">
-  <label for="ventes non débutées">ventes non débutées</label>
-</div>
-
-<div>
-  <input type="radio" id="ventes terminées" name="drone2" value="ventes terminées">
-  <label for="ventes terminées">ventes terminées</label>
-</div>
+                    </div>
+                    <div>
+                        <input type="radio" id="mes enchères remportées" name="drone2" value="mes enchères remportées"
+                            checked>
+                        <label for="mes enchères remportées">mes enchères remportées</label>
+                </dd>
+            </div>
 
 
- 
-____________________________________________________________________________
+            <h6>Mes ventes:</h6>
+            <div>
+                <input type="radio" id="mes ventes en cours" name="drone2" value="mes ventes en cours">
+                <label for="mes ventes en cours">mes ventes en cours</label>
+            </div>
 
-     
-                
-                <label for="disabledSelect" class="col-form-label">Catégories</label>
-                <select id="disabledSelect" class="form-select">
-                    <option>Toutes</option>
-                    <option>????</option>
-                    <option>????</option>
-                    <option>????</option>
-                    <option>????</option>
-                    <option>????</option>
+            <div>
+                <input type="radio" id="ventes non débutées" name="drone2" value="ventes non débutées">
+                <label for="ventes non débutées">ventes non débutées</label>
+            </div>
+
+            <div>
+                <input type="radio" id="ventes terminées" name="drone2" value="ventes terminées">
+                <label for="ventes terminées">ventes terminées</label>
+            </div>
+            <br></br>
+            <div class="mb-3">
+                <label for="disabledSelect" class="col-form-label"><h5>Catégories</h5></label>
+                <select id="disabledSelect" name="categorie" class="form-select">
+                    <option id="toutes" value=1>Toutes</option>
+                    <option id="véhicules" value=2>Véhicules</option>
+                    <option id="mobiliers" value=3>Mobiliers</option>
+                    <option id="animaux" value=4>Animaux</option>
+                    <option id="informatiques" value=5>Informatiques</option>
                 </select>
 
 
@@ -91,13 +85,67 @@ ____________________________________________________________________________
             <div class="mb-3">
                 <div id="bouton">
                     <div class="panel-body text-center">
-                        <input type="submit" name="btRechercher" value="Rechercher" class="boutonForm"
+                        <input type="submit" id="btRechercher" name="btRechercher" value="Rechercher" class="boutonForm"
                             title="Rechercher" />
                     </div>
                 </div>
             </div>
+        </div>
+</form>
+
+
+        <div class="form-control">
+            <div class="form-control">
+                <c:set var="nbArticleVendu" value="0" scope="page" />
+                <c:forEach var="articleVendu" items="${listeArticleVendu}">
+                    <c:set var="nbArticleVendu" value="${nbArticleVendu + 1}" scope="page" />
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img class="card-img" src="https://ae01.alicdn.com/kf/HTB1EDhcbRWD3KVjSZKPq6yp7FXaT/618-230-610mm-bricolage-ordinateur-PC-Gamer-bo-tier-en-forme-de-diamant-en-alliage-d.jpg">
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Titre : ${articleVendu.nom}</h5>
+                                <p class="card-text">Prix : ${articleVendu.prixVente} points</p>
+                                <p class="card-text">Description : ${articleVendu.description}</p>
+                                <p class="card-text">Fin de l'enchère : ${articleVendu.dateFinEncheres}</p>
+                                <p class="card-text">Retrait : ${articleVendu.DateFinEnchere}</p>
+                                <p class="card-text">Vendeur : ${utilisateur.Pseudo}</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </c:forEach>
+
+            <div class="form-control">
+                <c:set var="nbArticleVendu" value="0" scope="page" />
+                <c:forEach var="articleVendu" items="${listeArticleVendu}">
+                    <c:set var="nbArticleVendu" value="${nbArticleVendu + 2}" scope="page" />
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img class="card-img" src="http://www.cevennes-gite.eu/data/images/blog/blog-2020/dsc_3889w.jpg">
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Titre : ${articleVendu.nom}</h5>
+                                <p class="card-text">Prix : ${articleVendu.prixVente} points</p>
+                                <p class="card-text">Description : ${articleVendu.description}</p>
+                                <p class="card-text">Fin de l'enchère : ${articleVendu.dateFinEncheres}</p>
+                                <p class="card-text">Retrait : ${articleVendu.DateFinEnchere}</p>
+                                <p class="card-text">Vendeur : ${utilisateur.Pseudo}</p>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
 
         </div>
+
+        ------------------------------------------ A EFFACER: ----------------------------------------------s
+
+
 
         <div class="form-control">
             <div class="form-control">
@@ -109,8 +157,10 @@ ____________________________________________________________________________
                 <table id="subscription-table" class="subscription-table">
 
 
-
                     <tbody>
+
+                        <a aAfficher></a>
+
                         <h5>PC Gamer pour travailler</h5>
 
                         <tr>
@@ -170,5 +220,9 @@ ____________________________________________________________________________
             </div>
 
         </div>
+
+
+        </div>
     </body>
+
     </html>

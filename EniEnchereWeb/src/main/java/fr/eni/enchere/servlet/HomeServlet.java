@@ -1,6 +1,7 @@
 package fr.eni.enchere.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.bo.ArticleVendu;
+
+
 
 
 /**
@@ -34,41 +37,30 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		getServletContext().getRequestDispatcher("/HomePage.jsp").forward(request, response);
+	
+		// pour test
+		List<ArticleVendu> articleList = new ArrayList<ArticleVendu>();
+		articleList.add(new ArticleVendu(1,"Article1", "Description 1", 0, 0 , 0, 0,ArticleVendu.EtatVente.En_Cours));
+		
+		//je le put dans la vue
+		request.setAttribute("articleList", articleList);
+		
+		//j'affiche la vue
+		getServletContext().getRequestDispatcher("/HomePage.jsp").forward(request, response);
+	
+		
+		
 	}
 
-	
-
-	private void rechercher (HttpServletRequest request, HttpServletResponse response) {
-		String disabledSelect =request.getParameter("disabledSelect");
-	}
-	/*			
-		if (disabledSelect== "toutes") {
-			HttpSession ses;
-			List<ArticleVendu> listeCategorieArticle;
-			ses=request.getSession();
-			listeCategorieArticle=(List<ArticleVendu>)ses.getAttribute("maCatégorie");
-			request.setAttribute("catégorie",listeCategorieArticle);
-			try {
-				getServletContext().getRequestDispatcher("/WEB-INF/#.jsp").forward(request, response);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
-		}				
-	}
-	
-
-
-*/	
-	
-	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String idCategorie = request.getParameter("categorie");
+		// where dans la BLL
+		
+		
+		getServletContext().getRequestDispatcher("/HomePage.jsp").forward(request, response);
 	}
 
 }
