@@ -25,6 +25,7 @@
          <dd><a href="/EniEnchereWeb/DeconnexionServlet">S'inscrire - Se connecter</a></dd>
 
     </div>
+    
 
     <body>
         <div class="form-control">
