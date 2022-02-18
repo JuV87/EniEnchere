@@ -33,6 +33,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String sqlUpdate = "UPDATE utilisateurs SET pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?, ville=?, mot_de_passe=?, credit=?, cadministrateur=? where no_utilisateur=?";
 	private static final String sqlInsert = "INSERT INTO utilisateurs(pseudo,nom,prenom,email,telephone,rue,code_postal,ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String sqlDelete = "DELETE FROM utilisateurs WHERE no_utilisateur=?";
+	private static final String sqlSelectByLogin = "SELECT no_utilisateur, pseudo, nom, prenom, email " + "FROM UTILISATEURS where email = ? AND mot_de_passe = ?";
 
 	
 
@@ -286,6 +287,46 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		return status;  
 	}  
 
+	@Override
+	public boolean loginUser(String username, String password) throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		Utilisateur user = null;
+		boolean success = false;
+
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlSelectByLogin);
+			rqt.setString(1, username);
+			rqt.setString(2, password);
+
+			rs = rqt.executeQuery();
+
+			if (rs.next()){
+				success = true;
+			}
+
+		} catch (SQLException e) {
+			throw new DALException("selectById failed - id" , e);
+		} finally {
+			try {
+				if (rs != null){
+					rs.close();
+				}
+				if (rqt != null){
+					rqt.close();
+				}
+				if(cnx!=null){
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return success;
+	}
 
 }
 

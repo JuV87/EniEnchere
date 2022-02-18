@@ -23,6 +23,8 @@ public interface UtilisateurDAO {
 	
 	// Trouver un utilisateur dans la base de données
 	public boolean findUser(String i, String j) throws DALException;
+	
+	public boolean loginUser(String username, String password) throws DALException;
 
 }
 

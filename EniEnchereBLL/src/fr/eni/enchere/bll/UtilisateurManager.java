@@ -16,12 +16,20 @@ public class UtilisateurManager {
 	public UtilisateurManager() {
 		this.utilisateurDAO=DAOFactory.getInstance().getUtilisateurDAO();
 	}
+	
+	/*
+	 * 
+	 */
 
 	public List<Utilisateur> selectionnerTousLesUtilisateurs() throws BusinessException, Exception
 	{
 		return this.utilisateurDAO.selectAll();
 	}
-
+	
+	/*
+	 * 
+	 */
+	
 	public Utilisateur selectById(int noUtilisateur) throws BusinessException {
 		Utilisateur user=null;
 		try {
@@ -32,6 +40,10 @@ public class UtilisateurManager {
 		}
 		return user;
 	}
+	
+	/*
+	 * 
+	 */
 
 	public EniResponse ajouterUtilisateur(Utilisateur newUtilisateur) {	
 		boolean success = false;
@@ -47,7 +59,18 @@ public class UtilisateurManager {
 		}
 		return response;
 	}
-
+	
+	/*
+	 * 
+	 */
+	
+	public boolean loginUser(String email, String password) throws DALException {
+		return DAOFactory.getInstance().getUtilisateurDAO().loginUser(email, password);
+	}
+	
+	/*
+	 * 
+	 */
 
 	public void supprimerUtilisateur(int noUtilisateur) throws BusinessException{
 		try {
@@ -56,9 +79,6 @@ public class UtilisateurManager {
 			e.printStackTrace();
 		}
 	}
-
-
-
 }
 
 

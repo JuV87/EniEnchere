@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchere.bll.BLLManager;
 import fr.eni.enchere.bo.Utilisateur;
+import fr.eni.enchere.dao.DALException;
 
 /**
  * Servlet implementation class LoginServlet
@@ -21,10 +23,10 @@ public class LoginServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
-        super();
-        
-    }
+	public LoginServlet() {
+		super();
+
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -32,37 +34,39 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// render page
 		getServletContext().getRequestDispatcher("/LoginPage.jsp").forward(request, response);
-		
-		
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	
-	/*
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pseudo = request.getParameter("pseudo");
-		String motDePasse = request.getParameter("password");
 		
 		
-		
-		
-		
-		Utilisateur user = user.findUser(pseudo, password);
-
-		if (user == null) {
-			String errorMessage = "Identifiant et/ou mot de passe incorrect(s)";
-
-			request.setAttribute("errorMessage", errorMessage);
-
-			RequestDispatcher dispatcher //
-					= this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
-
-			dispatcher.forward(request, response);
-			return;
+		String email=request.getParameter("email");
+		String password=request.getParameter("password");
+		boolean successLogin = false;
+		System.out.println(request.getContextPath());
+		try 
+		{
+			successLogin = BLLManager.getInstance().getUtilisateurManager().loginUser(email, password);
+			
+			String message = "";
+		}
+		catch (DALException e) 
+		{
+			e.printStackTrace();
 		}
 		
+		if (successLogin) {
+			response.sendRedirect("HomeServlet");
+		}
+		else {
+			// sinon erreur mot de passe
+			response.sendRedirect("LoginServlet");
+		}
+	
 	}
- */
+
 }
+
