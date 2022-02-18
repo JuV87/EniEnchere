@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchere.bll.BLLManager;
+import fr.eni.enchere.bll.EniResponse;
+import fr.eni.enchere.bll.utils.EniConstantes;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
@@ -48,7 +51,7 @@ public class MonProfilServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		getServletContext().getRequestDispatcher("/MonProfil.jsp").forward(request, response);
 	}
 
@@ -79,58 +82,30 @@ public class MonProfilServlet extends HttpServlet {
 				// 3: BLL
 				// Inserer que si le controle de surface fonctionne
 				if (controlSuccess) {
-					EniEncherResponse eniEncherResponse = " attendre creation manager " .getUtilisaterManager().registerUser(user);
+					EniResponse eniResponse = BLLManager.getInstance().getUtilisateurManager().ajouterUtilisateur(user);
 					
 					// Si inscription success
-					if (eniEncherResponse.getCodeResponse() == Constantes.CODE_SUCCESS) {
+					if (eniResponse.getCodeResponse() == EniConstantes.CODE_SUCCESS) {
 						// Redirection accceuil
 						response.sendRedirect("LoginServlet");
 					}
 					else {
 						// Erreur
-						response.sendRedirect("RegisterServlet");
+						response.sendRedirect("MonProfilServlet");
 					}
 				}
 				else {
 					// Reste sur la meme page mais avec message d'erreur par rapport au donnees saisie
-					response.sendRedirect("RegisterServlet");
+					response.sendRedirect("MonProfilServlet");
 				}
 			}
 				
 		
-		// Controle de surface 
-		/*String pseudo = request.getParameter("pseudo");
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		String email = request.getParameter("email");
-		String telephone = request.getParameter("telephone");
-		String rue = request.getParameter("rue");
-		String codepostal = request.getParameter("code postal");
-		String ville = request.getParameter("nom de la ville");
-		String motdepasse = request.getParameter("mot de passe");
-		String confirmation = request.getParameter("confirmation");
-		String credit = request.getParameter("credit");
-		
-		
-		UserAccount userAccount = DataDAO.findUser(pseudo, nom, prenom, email, telephone,rue,
-		 code postal,non de la ville,mot de passe,confirmation,credit );
-
-		if (userAccount == null && motdepasse == confirmation) {
-			String Message = "compte creer";
-
-			request.setAttribute("Message", Message);
-
-			RequestDispatcher dispatcher //
-					= this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
-
-			dispatcher.forward(request, response);
-			return;
-		}
-		*/
+	
 		
 	}
 
 	
 	
 	
-}
+

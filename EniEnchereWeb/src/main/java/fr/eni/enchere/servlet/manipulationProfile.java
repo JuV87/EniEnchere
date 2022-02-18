@@ -39,13 +39,7 @@ public class manipulationProfile extends HttpServlet {
 		String supprimercompte = request.getParameter("supprimer mon compte ");
 		String retour = request.getParameter("retour");
 		
-		// recuperation de l'action appuie sur enregistrer 
-	        if ( !empty == enregistrer ) 	        
-	        HttpSession session = request.getSession( true );
-	        session.setAttribute( "enregistrer", enregistrer );	       	        
-	        request.getRequestDispatcher( "envoyer vers page de connexion" ).forward( request, response );
-	        
-	        
+		
 	        
 	        
 	        
