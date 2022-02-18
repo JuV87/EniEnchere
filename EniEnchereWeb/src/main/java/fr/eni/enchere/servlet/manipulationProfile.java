@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/manipulationProfile")
 public class manipulationProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
+	
+	
     /**
      * Default constructor. 
      */
@@ -33,8 +35,17 @@ public class manipulationProfile extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String enregistrer = request.getParameter("enregistrer");
+		String supprimercompte = request.getParameter("supprimer mon compte ");
+		String retour = request.getParameter("retour");
+		
+		
+	        
+	        
+	        
+	        }
+		
+		
 	}
 
-}
+
