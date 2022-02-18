@@ -32,12 +32,14 @@ public class UtilisateurManager {
 	
 	public Utilisateur selectById(int noUtilisateur) throws BusinessException {
 		Utilisateur user=null;
-		try {
-			user = utilisateurDAO.selectBynoUtilisateur(noUtilisateur);
-		} catch (DALException e) {
-			// TODO Auto-generated catch 
-			e.printStackTrace();
-		}
+	
+			try {
+				user = DAOFactory.getInstance().getUtilisateurDAO().selectBynoUtilisateur(noUtilisateur);
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		return user;
 	}
 	
@@ -64,8 +66,15 @@ public class UtilisateurManager {
 	 * 
 	 */
 	
-	public boolean loginUser(String email, String password) throws DALException {
-		return DAOFactory.getInstance().getUtilisateurDAO().loginUser(email, password);
+	public boolean loginUser(String email, String password) throws BusinessException {
+		boolean success=false;
+		try {
+			success =DAOFactory.getInstance().getUtilisateurDAO().loginUser(email, password);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return success;
 	}
 	
 	/*

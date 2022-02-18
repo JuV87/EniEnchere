@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.bll.BLLManager;
+import fr.eni.enchere.bll.BusinessException;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dao.DALException;
 
@@ -47,16 +48,15 @@ public class LoginServlet extends HttpServlet {
 		String password=request.getParameter("password");
 		boolean successLogin = false;
 		System.out.println(request.getContextPath());
-		try 
-		{
-			successLogin = BLLManager.getInstance().getUtilisateurManager().loginUser(email, password);
+		
+			try {
+				successLogin = BLLManager.getInstance().getUtilisateurManager().loginUser(email, password);
+			} catch (BusinessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			String message = "";
-		}
-		catch (DALException e) 
-		{
-			e.printStackTrace();
-		}
 		
 		if (successLogin) {
 			response.sendRedirect("HomeServlet");

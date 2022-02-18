@@ -191,7 +191,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		try {
 			
 			cnx = JdbcTools.getConnection();
-			cnx.setAutoCommit(false);
+			//cnx.setAutoCommit(false);
 			rqt = cnx.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
 
 			rqt.setString(1, user.getPseudo());

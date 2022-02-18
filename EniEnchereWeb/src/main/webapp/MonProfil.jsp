@@ -97,7 +97,7 @@
 
                 <!-- Buttons  -->
                 <div class="d-grid gap-2 d-flex">
-                    <input type="submit" class="btn btn-primary col-6" value="Créer"></button>
+                    <input type="submit" class="btn btn-primary col-6" value="Créer">
                     <button type="button" class="btn btn-primary col-6">Annuler</button>
                 </div>
 
