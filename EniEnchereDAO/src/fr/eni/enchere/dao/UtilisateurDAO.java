@@ -16,13 +16,15 @@ public interface UtilisateurDAO {
 	public void update(Utilisateur user) throws DALException;
 
 	//Insérer un nouvel utilisateur dans la BDD
-	public void insert(Utilisateur user) throws DALException;
+	public boolean insert(Utilisateur user) throws DALException;
 
 	//Supprimer un utilisateur
 	public void delete(int id) throws DALException;
 	
 	// Trouver un utilisateur dans la base de données
 	public boolean findUser(String i, String j) throws DALException;
+	
+	public boolean loginUser(String username, String password) throws DALException;
 
 }
 
