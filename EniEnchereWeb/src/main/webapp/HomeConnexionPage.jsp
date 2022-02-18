@@ -20,9 +20,9 @@
     </head>
     <div class="form-control">
         <h1>ENI-Enchère</h1>
-         <dd><a href="#">Vendre un article</a></dd>
-         <dd><a href="/EniEnchereWeb/MonProfilServlet">Mon profil</a></dd>
-         <dd><a href="/EniEnchereWeb/DeconnexionServlet">S'inscrire - Se connecter</a></dd>
+         <dd><a href="./VendreArticleServlet">Vendre un article</a></dd>
+         <dd><a href="./ProfilServlet">Mon profil</a></dd>
+         <dd><a href="./DeconnexionServlet">Déconnexion</a></dd>
 
     </div>
     
