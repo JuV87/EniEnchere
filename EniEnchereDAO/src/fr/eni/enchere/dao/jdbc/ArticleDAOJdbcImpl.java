@@ -24,8 +24,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			" FROM articles_vendus where no_article = ?";
 	private static final String sqlSelectAll = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente " +  
 			" FROM articles_vendus";
-	private static final String sqlUpdate = "UPDATE articles_vendus SET nom_article=?,description=?,date_debut_encheres=?,date_fin_encheres=?,prix_initial=?,prix_vente=?, where no_article=?";
-	private static final String sqlInsert = "INSERT INTO articles_vendus(pseudo,nom,prenom,email,telephone,rue,code_postal,ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String sqlUpdate = "UPDATE articles_vendus SET nom_article=?,nom_article=?,date_debut_encheres=?,date_fin_encheres=?,prix_initial=?,prix_vente=?, where no_article=?";
+	private static final String sqlInsert = "INSERT INTO articles_vendus(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur, no_categorie) VALUES (?,?,?,?,?,?,?,?)";
 	private static final String sqlDelete = "DELETE FROM articles_vendus WHERE no_article=?";
 	
 	@Override
@@ -186,6 +186,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		ResultSet rs = null;
 		String dateDebut=null;
 		String dateFin=null;
+		
 		try {
 			
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
@@ -195,14 +196,16 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			//cnx.setAutoCommit(false);
 			rqt = cnx.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
 
-			rqt.setInt(1, art.getNoArticle());
-			rqt.setString(2, art.getNomArticle());
-			rqt.setString(3, art.getDescription());
-			rqt.setString(4, formatter.format(art.getDateDebutEnchere()));
-			rqt.setString(5, formatter.format(art.getDateFinEnchere()));
-			rqt.setString(6, art.getMiseAPrix());
-			rqt.setInt(7, art.getPrixVente());
-
+			rqt.setString(1, art.getNomArticle());
+			rqt.setString(2, art.getDescription());
+			rqt.setString(3, formatter.format(art.getDateDebutEnchere()));
+			rqt.setString(4, formatter.format(art.getDateFinEnchere()));
+			rqt.setString(5, art.getMiseAPrix());
+			rqt.setInt(6, art.getPrixVente());
+			rqt.setInt(7, art.getNoUtilisateur());
+			rqt.setInt(8, Integer.parseInt(art.getCategorieArticle().getNoCategorie()));
+			
+			
 			int result = rqt.executeUpdate();
 			if(result == 1){
 				ResultSet resultset = rqt.getGeneratedKeys();

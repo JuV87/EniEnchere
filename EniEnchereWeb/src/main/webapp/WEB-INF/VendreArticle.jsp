@@ -91,8 +91,7 @@
 							<div class="form-group">
 								<label for="prix-initial"></label>
 								<h6>Prix initial :</h6>
-								<input type="text" id="prix-initial" name="tentacles" min="1" max="150"
-									name="prix-initial">
+								<input type="text" id="prix-initial" min="1" max="150" name="prix-initial">
 							</div>
 						</div>
 					</div>

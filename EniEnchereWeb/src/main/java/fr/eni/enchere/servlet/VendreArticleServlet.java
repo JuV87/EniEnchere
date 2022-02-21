@@ -12,11 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.bll.BLLManager;
 import fr.eni.enchere.bll.EniResponse;
 import fr.eni.enchere.bll.utils.EniConstantes;
 import fr.eni.enchere.bo.ArticleVendu;
+import fr.eni.enchere.bo.Categorie;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
@@ -82,11 +84,16 @@ public class VendreArticleServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		HttpSession session = request.getSession();
 		
 				ArticleVendu article = new ArticleVendu(-1, fieldsMap.get("nom"), 
 						fieldsMap.get("description"),  dateD,  dateF,
 						fieldsMap.get("prix-initial"),0);
-		
+				
+				
+				article.setCategorieArticle(new Categorie("1", "jouet"));
+				article.setNoUtilisateur((int)session.getAttribute("id"));
+				
 				// 3: BLL
 				// Inserer que si le controle de surface fonctionne
 				if (controlSuccess) {
