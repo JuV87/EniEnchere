@@ -9,7 +9,7 @@ public class ArticleVendu {
 	private String description;
 	private Date dateDebutEnchere;
 	private Date dateFinEnchere;
-	private int miseAPrix;
+	private String miseAPrix;
 	private int prixVente;
 	
 	public  enum  EtatVente {
@@ -24,7 +24,7 @@ public class ArticleVendu {
 	public ArticleVendu() {
 		
 	}
-	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, int miseAPrix, int prixVente, EtatVente etatVente) {
+	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, String miseAPrix, int prixVente, EtatVente etatVente) {
 		this.setNoArticle(noArticle);
 		this.setNomArticle(nomArticle);
 		this.setDescription(description);
@@ -36,7 +36,7 @@ public class ArticleVendu {
 		
 	}
 	
-	public ArticleVendu(String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, int miseAPrix, int prixVente) {
+	public ArticleVendu(String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, String miseAPrix, int prixVente) {
 		this.setNomArticle(nomArticle);
 		this.setDescription(description);
 		this.setDateDebutEnchere(dateDebutEnchere);
@@ -45,7 +45,7 @@ public class ArticleVendu {
 		this.setPrixVente(prixVente);
 	}
 	
-	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, int miseAPrix, int prixVente) {
+	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, String miseAPrix, int prixVente) {
 		this.setNoArticle(noArticle);
 		this.setNomArticle(nomArticle);
 		this.setDescription(description);
@@ -98,12 +98,12 @@ public class ArticleVendu {
 		this.dateFinEnchere = dateFinEnchere;
 	}
 
-	public int getMiseAPrix() {
+	public String getMiseAPrix() {
 		return miseAPrix;
 	}
 
-	public void setMiseAPrix(int miseAPrix) {
-		this.miseAPrix = miseAPrix;
+	public void setMiseAPrix(String miseAPrix2) {
+		this.miseAPrix = miseAPrix2;
 	}
 
 	public int getPrixVente() {

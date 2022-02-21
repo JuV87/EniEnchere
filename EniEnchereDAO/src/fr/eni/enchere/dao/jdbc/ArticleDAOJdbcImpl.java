@@ -58,7 +58,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 							rs.getString("description"),
 							dateD,
 							dateF,
-							rs.getInt("prix_initial"),
+							rs.getString("prix_initial"),
 							rs.getInt("prix_vente"));
 							
 					listeDeTousLesArticles.add(art);
@@ -115,7 +115,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 						rs.getString("description"),
 						dateD,
 						dateF,
-						rs.getInt("prix_initial"),
+						rs.getString("prix_initial"),
 						rs.getInt("prix_vente"));
 
 			}
@@ -156,7 +156,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			rqt.setString(3, art.getDescription());
 			rqt.setString(4, formatter.format(art.getDateDebutEnchere()));
 			rqt.setString(5, formatter.format(art.getDateFinEnchere()));
-			rqt.setInt(6, art.getMiseAPrix());
+			rqt.setString(6, art.getMiseAPrix());
 			rqt.setInt(7, art.getPrixVente());
 		
 			rqt.executeUpdate();
@@ -200,7 +200,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			rqt.setString(3, art.getDescription());
 			rqt.setString(4, formatter.format(art.getDateDebutEnchere()));
 			rqt.setString(5, formatter.format(art.getDateFinEnchere()));
-			rqt.setInt(6, art.getMiseAPrix());
+			rqt.setString(6, art.getMiseAPrix());
 			rqt.setInt(7, art.getPrixVente());
 
 			int result = rqt.executeUpdate();
