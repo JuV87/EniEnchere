@@ -48,10 +48,13 @@ public class LoginServlet extends HttpServlet {
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
 		boolean successLogin = false;
+		Utilisateur user =null;
+
 		
 		
 			try {
 				successLogin = BLLManager.getInstance().getUtilisateurManager().loginUser(email, password);
+				
 			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -62,7 +65,14 @@ public class LoginServlet extends HttpServlet {
 		if (successLogin) {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", session.getId());
-			response.sendRedirect("HomeServlet");
+			try {
+				user = BLLManager.getInstance().getUtilisateurManager().selectByemail(email);
+			} catch (BusinessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			response.sendRedirect("HomeConnexionServlet");
+			session.setAttribute("messageSucces", "Bonjour, "+user.getPrenom()+" " +user.getNom()+" vous êtes connecté !");
 		}
 		else {
 			// sinon erreur mot de passe

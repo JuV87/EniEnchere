@@ -56,7 +56,14 @@ public class Utilisateur  {
 		this.setAdministrateur(administrateur);
 }
 	
-	
+	public Utilisateur(int noUtilisateur,  String pseudo, String nom,String prenom, String email) {
+		this.setNoUtilisateur(noUtilisateur);
+		this.setPseudo(pseudo);
+		this.setNom(nom);
+		this.setPrenom(prenom);
+		this.setEmail(email);
+		
+}
 	
 	//getter-setter
 	public int getNoUtilisateur() {

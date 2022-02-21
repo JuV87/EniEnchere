@@ -46,7 +46,7 @@ public class HomeServlet extends HttpServlet {
 		//request.setAttribute("articleList", articleList);
 		
 		//j'affiche la vue
-		getServletContext().getRequestDispatcher("/HomePage.jsp").forward(request, response);
+		//getServletContext().getRequestDispatcher("/HomePage.jsp").forward(request, response);
 	
 		
 		

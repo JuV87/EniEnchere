@@ -43,6 +43,19 @@ public class UtilisateurManager {
 		return user;
 	}
 	
+	public Utilisateur selectByemail(String email) throws BusinessException {
+		Utilisateur user=null;
+	
+			try {
+				user = DAOFactory.getInstance().getUtilisateurDAO().selectBynoemail(email);
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		return user;
+	}
+	
 	/*
 	 * 
 	 */
