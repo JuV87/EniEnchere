@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.bll.BLLManager;
 import fr.eni.enchere.bll.BusinessException;
@@ -47,7 +48,7 @@ public class LoginServlet extends HttpServlet {
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
 		boolean successLogin = false;
-		System.out.println(request.getContextPath());
+		
 		
 			try {
 				successLogin = BLLManager.getInstance().getUtilisateurManager().loginUser(email, password);
@@ -59,6 +60,8 @@ public class LoginServlet extends HttpServlet {
 			String message = "";
 		
 		if (successLogin) {
+			HttpSession session = request.getSession();
+			session.setAttribute("id", session.getId());
 			response.sendRedirect("HomeServlet");
 		}
 		else {
