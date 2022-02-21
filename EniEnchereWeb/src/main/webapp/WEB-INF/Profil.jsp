@@ -35,7 +35,7 @@
 			<div class="col-sm-3">
 				<tr class="mb-0" style="padding: 1rem">
 					<th >Pseudo :</th>
-					<td> ${user.noUtilisateur}</td>
+					<td> ${profil.noUtilisateur}</td>
 				</tr>
 			</div>
 		</div>
@@ -43,7 +43,7 @@
 			<div class="col-sm-3">
 				<tr class="mb-0" style="padding: 1rem">
 					<th >Nom :</th>
-					<td> ${user.nom}</td>
+					<td> ${profil.nom}</td>
 				</tr>
 			</div>
 		</div>
@@ -51,7 +51,7 @@
 			<div class="col-sm-3">
 				<tr class="mb-0" style="padding: 1rem">
 					<th >prenom :</th>
-					<td> ${user.prenom}</td>
+					<td> ${profil.prenom}</td>
 				</tr>
 			</div>
 		</div>
@@ -59,7 +59,7 @@
 			<div class="col-sm-3">
 				<tr class="mb-0" style="padding: 1rem">
 					<th >Email :</th>
-					<td> ${user.email}</td>
+					<td> ${profil.email}</td>
 				</tr>
 			</div>
 		</div>
@@ -67,7 +67,7 @@
 			<div class="col-sm-3">
 				<tr class="mb-0" style="padding: 1rem">
 					<th >Mobile :</th>
-					<td> ${user.telephone}</td>
+					<td> ${profil.telephone}</td>
 				</tr>
 			</div>
 		</div>
@@ -75,7 +75,7 @@
 			<div class="col-sm-3">
 				<tr class="mb-0" style="padding: 1rem">
 					<th >Rue :</th>
-					<td> ${user.rue}</td>
+					<td> ${profil.rue}</td>
 				</tr>
 			</div>
 		</div>
@@ -83,7 +83,7 @@
 			<div class="col-sm-3">
 				<tr class="mb-0" style="padding: 1rem">
 					<th >Code postal :</th>
-					<td> ${user.codePostal}</td>
+					<td> ${profil.codePostal}</td>
 				</tr>
 			</div>
 		</div>
@@ -92,7 +92,7 @@
 			<div class="col-sm-3">
 				<tr class="mb-0" style="padding: 1rem">
 					<th >Ville :</th>
-					<td> ${user.ville}</td>
+					<td> ${profil.ville}</td>
 				</tr>
 			</div>
 		</div>

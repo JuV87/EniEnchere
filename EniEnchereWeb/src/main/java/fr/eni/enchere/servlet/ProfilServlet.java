@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.bll.BLLManager;
+import fr.eni.enchere.bll.BusinessException;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dao.DALException;
@@ -33,10 +34,16 @@ public class ProfilServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*UtilisateurManager profilUser = new UtilisateurManager();
-		int id = (Integer)request.getSession("noUtilisateur");
-		Utilisateur user = profilUser.selectById(id);
-		request.setAttribute(null, user);*/
+		UtilisateurManager profilUser = new UtilisateurManager();
+		int id = (int)request.getSession().getAttribute("no_Utilisateur");
+		Utilisateur user=null;
+		try {
+			user = profilUser.selectById(id);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.setAttribute("profil", user);
 		request.getRequestDispatcher("/WEB-INF/Profil.jsp").forward(request,response); 
 	}
 
