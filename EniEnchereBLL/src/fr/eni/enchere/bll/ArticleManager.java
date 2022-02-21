@@ -1,56 +1,57 @@
 package fr.eni.enchere.bll;
 
+import java.text.ParseException;
 import java.util.List;
 
 import fr.eni.enchere.bll.utils.EniConstantes;
-import fr.eni.enchere.bo.Utilisateur;
+import fr.eni.enchere.bo.ArticleVendu;
+import fr.eni.enchere.dao.ArticleDAO;
 import fr.eni.enchere.dao.DALException;
 import fr.eni.enchere.dao.DAOFactory;
 
 public class ArticleManager {
 	
+	private  ArticleDAO articleDAO;
 	
-	
-	
-	public Utilisateur selectById(int noUtilisateur) throws BusinessException {
-		Utilisateur user=null;
+	public ArticleVendu selectById(int noArticle) throws BusinessException, ParseException {
+		ArticleVendu art=null;
 	
 			try {
-				user = DAOFactory.getInstance().getUtilisateurDAO().selectBynoUtilisateur(noUtilisateur);
+				art = DAOFactory.getInstance().getArticleDAO().selectBynoArticle(noArticle);
 			} catch (DALException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
-		return user;
+		return art;
 	}
 
-	public EniResponse ajouterUtilisateur(Utilisateur newUtilisateur) {	
+	public EniResponse ajouterArticle(ArticleVendu newArticle) {	
 		boolean success = false;
 		try {	
-			success =DAOFactory.getInstance().getUtilisateurDAO().insert(newUtilisateur);
+			success =DAOFactory.getInstance().getArticleDAO().insert(newArticle);
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		EniResponse response = new EniResponse(EniConstantes.CODE_SUCCESS, "Inscription avec succès!");
+		EniResponse response = new EniResponse(EniConstantes.CODE_SUCCESS, "Ajout de l'article avec succès!");
 		if (!success) {
-			response.setResponse(EniConstantes.CODE_ERROR_TECH, "Impossible d'insérer l'utilisateur dans la BDD");
+			response.setResponse(EniConstantes.CODE_ERROR_TECH, "Impossible d'insérer l'article dans la BDD");
 
 		}
 		return response;
 	}
 	
-	public void supprimerUtilisateur(int noUtilisateur) throws BusinessException{
+	public void supprimerArticle(int noArticle) throws BusinessException{
 		try {
-			this.utilisateurDAO.delete(noUtilisateur);
+			this.articleDAO.delete(noArticle);
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public List<Utilisateur> selectionnerTousLesUtilisateurs() throws BusinessException, Exception
+	public List<ArticleVendu> selectionnerTousLesUtilisateurs() throws BusinessException, Exception
 	{
-		return this.utilisateurDAO.selectAll();
+		return this.articleDAO.selectAll();
 	}
 
 }

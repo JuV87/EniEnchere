@@ -5,8 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import fr.eni.enchere.bo.ArticleVendu;
 import fr.eni.enchere.bo.ArticleVendu.EtatVente;
@@ -16,20 +20,22 @@ import fr.eni.enchere.dao.DALException;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 	
-	private static final String sqlSelectById = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur " +
-			" FROM utilisateurs where no_utilisateur = ?";
-	private static final String sqlSelectAll = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur " +  
-			" FROM utilisateurs";
-	private static final String sqlUpdate = "UPDATE utilisateurs SET pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?, ville=?, mot_de_passe=?, credit=?, cadministrateur=? where no_utilisateur=?";
-	private static final String sqlInsert = "INSERT INTO utilisateurs(pseudo,nom,prenom,email,telephone,rue,code_postal,ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-	private static final String sqlDelete = "DELETE FROM utilisateurs WHERE no_utilisateur=?";
-	private static final String sqlSelectByLogin = "SELECT no_utilisateur, pseudo, nom, prenom, email " + "FROM UTILISATEURS where email = ? AND mot_de_passe = ?";
+	private static final String sqlSelectById = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente " +
+			" FROM articles_vendus where no_article = ?";
+	private static final String sqlSelectAll = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente " +  
+			" FROM articles_vendus";
+	private static final String sqlUpdate = "UPDATE articles_vendus SET nom_article=?,description=?,date_debut_encheres=?,date_fin_encheres=?,prix_initial=?,prix_vente=?, where no_article=?";
+	private static final String sqlInsert = "INSERT INTO articles_vendus(pseudo,nom,prenom,email,telephone,rue,code_postal,ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String sqlDelete = "DELETE FROM articles_vendus WHERE no_article=?";
 	
 	@Override
-	public List<ArticleVendu> selectAll() throws DALException {
+	public List<ArticleVendu> selectAll() throws DALException, ParseException {
 		Connection cnx = null;
 		Statement rqt = null;
 		ResultSet rs = null;
+		Date dateDebut=null;
+		Date dateFin=null;
+		
 		List<ArticleVendu> listeDeTousLesArticles = new ArrayList<ArticleVendu>();
 		try {
 			cnx = JdbcTools.getConnection();
@@ -38,15 +44,22 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			ArticleVendu art = null;
 
 			while (rs.next()) {
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+
+				String dateFinSTR = rs.getString("date_fin_encheres");
+				String dateDebutSTR = rs.getString("date_debut_encheres");
+				
+				Date dateF = formatter.parse(dateFinSTR);
+				Date dateD =formatter.parse(dateDebutSTR);
 			
 
 					art = new ArticleVendu (rs.getInt("no_article"),
 							rs.getString("nom_article"),
 							rs.getString("description"),
-							rs.getString("date_debut_encheres"),
-							rs.getString("date_fin_encheres"),
-							rs.getString("prix_initial"),
-							rs.getString("prix_vente"),
+							dateD,
+							dateF,
+							rs.getInt("prix_initial"),
+							rs.getInt("prix_vente"));
 							
 					listeDeTousLesArticles.add(art);
 			}
@@ -68,18 +81,20 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				e.printStackTrace();
 			}
 		}
-		return listeDeTousLesUtilisateurs;
+		return listeDeTousLesArticles;
 	}
 
 
 
 	@Override
-	public Utilisateur selectBynoUtilisateur(int id) throws DALException {
+	public ArticleVendu selectBynoArticle(int id) throws DALException, ParseException {
 
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
-		Utilisateur user = null;
+		ArticleVendu art = null;
+		Date dateDebut=null;
+		Date dateFin=null;
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectById);
@@ -87,19 +102,21 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 			rs = rqt.executeQuery();
 			if (rs.next()){
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
-				user = new Utilisateur(rs.getInt("no_utilisateur"),
-						rs.getString("pseudo"),
-						rs.getString("nom"),
-						rs.getString("prenom"),
-						rs.getString("email"),
-						rs.getString("telephone"),
-						rs.getString("rue"),
-						rs.getString("code_postal"),
-						rs.getString("ville"),
-						rs.getString("mot_de_passe"),
-						rs.getInt("credit"),
-						rs.getInt("administrateur"));
+				String dateFinSTR = rs.getString("date_fin_encheres");
+				String dateDebutSTR = rs.getString("date_debut_encheres");
+
+				Date dateF = formatter.parse(dateFinSTR);
+				Date dateD =formatter.parse(dateDebutSTR);
+
+				art = new ArticleVendu (rs.getInt("no_article"),
+						rs.getString("nom_article"),
+						rs.getString("description"),
+						dateD,
+						dateF,
+						rs.getInt("prix_initial"),
+						rs.getInt("prix_vente"));
 
 			}
 
@@ -121,34 +138,31 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			}
 
 		}
-		return user;
+		return art;
 	}
 
 	@Override
-	public void update(Utilisateur user) throws DALException {
+	public void update(ArticleVendu art) throws DALException {
 
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+	
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlUpdate);
-			rqt.setInt(1, user.getNoUtilisateur());
-			rqt.setString(2, user.getPseudo());
-			rqt.setString(3, user.getNom());
-			rqt.setString(4, user.getPrenom());
-			rqt.setString(5, user.getEmail());
-			rqt.setString(6, user.getTelephone());
-			rqt.setString(7, user.getRue());
-			rqt.setString(8, user.getCodePostal());
-			rqt.setString(9, user.getVille());
-			rqt.setString(10, user.getMotDePasse());
-			rqt.setInt(11, user.getCredit());
-			rqt.setInt(12, user.getAdministrateur());
-
+			rqt.setInt(1, art.getNoArticle());
+			rqt.setString(2, art.getNomArticle());
+			rqt.setString(3, art.getDescription());
+			rqt.setString(4, formatter.format(art.getDateDebutEnchere()));
+			rqt.setString(5, formatter.format(art.getDateFinEnchere()));
+			rqt.setInt(6, art.getMiseAPrix());
+			rqt.setInt(7, art.getPrixVente());
+		
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DALException("Update article failed - " + user, e);
+			throw new DALException("Update article failed - " + art, e);
 		} finally {
 			try {
 				if (rqt != null){
@@ -164,35 +178,36 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	}
 
 	@Override
-	public boolean insert(Utilisateur user) throws DALException {
+	public boolean insert(ArticleVendu art) throws DALException {
 
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		boolean success =false;
 		ResultSet rs = null;
+		String dateDebut=null;
+		String dateFin=null;
 		try {
+			
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+
 			
 			cnx = JdbcTools.getConnection();
 			//cnx.setAutoCommit(false);
 			rqt = cnx.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
 
-			rqt.setString(1, user.getPseudo());
-			rqt.setString(2, user.getNom());
-			rqt.setString(3, user.getPrenom());
-			rqt.setString(4, user.getEmail());
-			rqt.setString(5, user.getTelephone());
-			rqt.setString(6, user.getRue());
-			rqt.setString(7, user.getCodePostal());
-			rqt.setString(8, user.getVille());
-			rqt.setString(9, user.getMotDePasse());
-			rqt.setInt(10, user.getCredit());
-			rqt.setInt(11, user.getAdministrateur());
+			rqt.setInt(1, art.getNoArticle());
+			rqt.setString(2, art.getNomArticle());
+			rqt.setString(3, art.getDescription());
+			rqt.setString(4, formatter.format(art.getDateDebutEnchere()));
+			rqt.setString(5, formatter.format(art.getDateFinEnchere()));
+			rqt.setInt(6, art.getMiseAPrix());
+			rqt.setInt(7, art.getPrixVente());
 
 			int result = rqt.executeUpdate();
 			if(result == 1){
 				ResultSet resultset = rqt.getGeneratedKeys();
 				if(resultset.next()){
-					user.setNoUtilisateur(resultset.getInt(1));
+					art.setNoArticle(resultset.getInt(1));
 
 				}
 				success=true;
@@ -200,7 +215,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 
 		}catch(SQLException e){
-			throw new DALException("Insert utilisateur failed", e);
+			throw new DALException("Insert article failed", e);
 		}finally {
 			try {
 				if (rs != null){
@@ -248,18 +263,16 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		}
 	}
 	
-	public boolean findUser(String i, String j) throws DALException {  
+	public boolean findArticle(String i) throws DALException {  
 
 		boolean status=false;  
 		try{  
 
 			Connection con=JdbcTools.getConnection();     
 			PreparedStatement ps=con.prepareStatement(  
-					"select * from utilisateurs where pseudo=? and mot_de_passe=?");  
+					"select * from articles_vendus where nom_article=?");  
 
 			ps.setString(1,i);  
-			ps.setString(2,j);  
-
 			ResultSet rs=ps.executeQuery();  
 			if (rs.next()) {
 				status = true;

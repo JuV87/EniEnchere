@@ -1,12 +1,14 @@
 package fr.eni.enchere.bo;
 
+import java.util.Date;
+
 public class ArticleVendu {
 
 	private int noArticle;
 	private String nomArticle;
 	private String description;
-	private int dateDebutEnchere;
-	private int dateFinEnchere;
+	private Date dateDebutEnchere;
+	private Date dateFinEnchere;
 	private int miseAPrix;
 	private int prixVente;
 	
@@ -22,7 +24,7 @@ public class ArticleVendu {
 	public ArticleVendu() {
 		
 	}
-	public ArticleVendu(int noArticle, String nomArticle, String description, int dateDebutEnchere, int dateFinEnchere, int miseAPrix, int prixVente, EtatVente etatVente) {
+	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, int miseAPrix, int prixVente, EtatVente etatVente) {
 		this.setNoArticle(noArticle);
 		this.setNomArticle(nomArticle);
 		this.setDescription(description);
@@ -34,7 +36,17 @@ public class ArticleVendu {
 		
 	}
 	
-	public ArticleVendu(String nomArticle, String description, int dateDebutEnchere, int dateFinEnchere, int miseAPrix, int prixVente) {
+	public ArticleVendu(String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, int miseAPrix, int prixVente) {
+		this.setNomArticle(nomArticle);
+		this.setDescription(description);
+		this.setDateDebutEnchere(dateDebutEnchere);
+		this.setDateFinEnchere(dateFinEnchere);
+		this.setMiseAPrix(miseAPrix);
+		this.setPrixVente(prixVente);
+	}
+	
+	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, int miseAPrix, int prixVente) {
+		this.setNoArticle(noArticle);
 		this.setNomArticle(nomArticle);
 		this.setDescription(description);
 		this.setDateDebutEnchere(dateDebutEnchere);
@@ -70,19 +82,19 @@ public class ArticleVendu {
 		this.description = description;
 	}
 
-	public int getDateDebutEnchere() {
+	public Date getDateDebutEnchere() {
 		return dateDebutEnchere;
 	}
 
-	public void setDateDebutEnchere(int dateDebutEnchere) {
-		this.dateDebutEnchere = dateDebutEnchere;
+	public void setDateDebutEnchere(Date dateDebutEnchere2) {
+		this.dateDebutEnchere = dateDebutEnchere2;
 	}
 
-	public int getDateFinEnchere() {
+	public Date getDateFinEnchere() {
 		return dateFinEnchere;
 	}
 
-	public void setDateFinEnchere(int dateFinEnchere) {
+	public void setDateFinEnchere(Date dateFinEnchere) {
 		this.dateFinEnchere = dateFinEnchere;
 	}
 

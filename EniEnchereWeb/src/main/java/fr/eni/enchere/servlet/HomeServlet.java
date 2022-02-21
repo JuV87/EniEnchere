@@ -39,11 +39,11 @@ public class HomeServlet extends HttpServlet {
 		getServletContext().getRequestDispatcher("/HomePage.jsp").forward(request, response);
 	
 		// pour test
-		List<ArticleVendu> articleList = new ArrayList<ArticleVendu>();
-		articleList.add(new ArticleVendu(1,"Article1", "Description 1", 0, 0 , 0, 0,ArticleVendu.EtatVente.En_Cours));
+		//List<ArticleVendu> articleList = new ArrayList<ArticleVendu>();
+		//articleList.add(new ArticleVendu(1,"Article1", "Description 1", 0, 0 , 0, 0,ArticleVendu.EtatVente.En_Cours));
 		
 		//je le put dans la vue
-		request.setAttribute("articleList", articleList);
+		//request.setAttribute("articleList", articleList);
 		
 		//j'affiche la vue
 		getServletContext().getRequestDispatcher("/HomePage.jsp").forward(request, response);
