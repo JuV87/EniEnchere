@@ -34,6 +34,15 @@ public class ArticleVendu {
 		
 	}
 	
+	public ArticleVendu(String nomArticle, String description, int dateDebutEnchere, int dateFinEnchere, int miseAPrix, int prixVente) {
+		this.setNomArticle(nomArticle);
+		this.setDescription(description);
+		this.setDateDebutEnchere(dateDebutEnchere);
+		this.setDateFinEnchere(dateFinEnchere);
+		this.setMiseAPrix(miseAPrix);
+		this.setPrixVente(prixVente);
+	}
+	
 	
 	
 // getter-setter

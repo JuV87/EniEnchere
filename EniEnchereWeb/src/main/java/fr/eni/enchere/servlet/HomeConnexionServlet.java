@@ -36,6 +36,12 @@ public class HomeConnexionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String idCategorie = request.getParameter("categorie");
+		// where dans la BLL
+		
+		
+		getServletContext().getRequestDispatcher("/HomePage.jsp").forward(request, response);
+
 	}
 
 }

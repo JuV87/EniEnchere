@@ -1,31 +1,21 @@
-/**
- * 
- */
 package fr.eni.enchere.dao.jdbc;
-
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.enchere.bo.ArticleVendu;
+import fr.eni.enchere.bo.ArticleVendu.EtatVente;
 import fr.eni.enchere.bo.Utilisateur;
+import fr.eni.enchere.dao.ArticleDAO;
 import fr.eni.enchere.dao.DALException;
-import fr.eni.enchere.dao.UtilisateurDAO;
 
-
-/**
- * @author Eni Ecole
- * 
- */
-
-
-public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
-
+public class ArticleDAOJdbcImpl implements ArticleDAO {
+	
 	private static final String sqlSelectById = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur " +
 			" FROM utilisateurs where no_utilisateur = ?";
 	private static final String sqlSelectAll = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur " +  
@@ -34,39 +24,31 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String sqlInsert = "INSERT INTO utilisateurs(pseudo,nom,prenom,email,telephone,rue,code_postal,ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String sqlDelete = "DELETE FROM utilisateurs WHERE no_utilisateur=?";
 	private static final String sqlSelectByLogin = "SELECT no_utilisateur, pseudo, nom, prenom, email " + "FROM UTILISATEURS where email = ? AND mot_de_passe = ?";
-
 	
-
 	@Override
-	public List<Utilisateur> selectAll() throws DALException {
+	public List<ArticleVendu> selectAll() throws DALException {
 		Connection cnx = null;
 		Statement rqt = null;
 		ResultSet rs = null;
-		List<Utilisateur> listeDeTousLesUtilisateurs = new ArrayList<Utilisateur>();
+		List<ArticleVendu> listeDeTousLesArticles = new ArrayList<ArticleVendu>();
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.createStatement();
 			rs = rqt.executeQuery(sqlSelectAll);
-			Utilisateur user = null;
+			ArticleVendu art = null;
 
 			while (rs.next()) {
 			
 
-					user = new Utilisateur(rs.getInt("no_utilisateur"),
-							rs.getString("pseudo"),
-							rs.getString("nom"),
-							rs.getString("prenom"),
-							rs.getString("email"),
-							rs.getString("telephone"),
-							rs.getString("rue"),
-							rs.getString("code_postal"),
-							rs.getString("ville"),
-							rs.getString("mot_de_passe"),
-							rs.getInt("credit"),
-							rs.getInt("administrateur"));
-					
-				
-		listeDeTousLesUtilisateurs.add(user);
+					art = new ArticleVendu (rs.getInt("no_article"),
+							rs.getString("nom_article"),
+							rs.getString("description"),
+							rs.getString("date_debut_encheres"),
+							rs.getString("date_fin_encheres"),
+							rs.getString("prix_initial"),
+							rs.getString("prix_vente"),
+							
+					listeDeTousLesArticles.add(art);
 			}
 		} catch (SQLException e) {
 			throw new DALException("selectAll failed - " , e);
@@ -287,54 +269,4 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		return status;  
 	}  
 
-	@Override
-	public boolean loginUser(String username, String password) throws DALException {
-		Connection cnx = null;
-		PreparedStatement rqt = null;
-		ResultSet rs = null;
-		Utilisateur user = null;
-		boolean success = false;
-
-		try {
-			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(sqlSelectByLogin);
-			rqt.setString(1, username);
-			rqt.setString(2, password);
-
-			rs = rqt.executeQuery();
-
-			if (rs.next()){
-				success = true;
-			}
-
-		} catch (SQLException e) {
-			throw new DALException("selectById failed - id" , e);
-		} finally {
-			try {
-				if (rs != null){
-					rs.close();
-				}
-				if (rqt != null){
-					rqt.close();
-				}
-				if(cnx!=null){
-					cnx.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
-		return success;
-	}
-
 }
-
-
-
-
-
-
-
-
-

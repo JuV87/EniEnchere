@@ -16,20 +16,26 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     </head>
+
     <div class="form-control">
         <h1>ENI-Enchère</h1>
         <a href="/EniEnchereWeb/LoginServlet">S'inscrire - Se connecter</a>
     </div>
 
     <body>
+    
+    <form action="HomeServlet" method="post"> 
         <div class="form-control">
             <div class="mb-3">
-                <h3>Filtres:</h3>
-                <label for="disabledSelect" class="col-form-label">Catégories</label>
-                <select id="disabledSelect" class="form-select">
-                    <option id="toutes">Toutes</option>
+                <h3>Filtres:</h3>          
+                <label for="disabledSelect" class="col-form-label"><h5>Catégories</h5></label>
+                <select id="disabledSelect" name="categorie" class="form-select">
+                    <option id="toutes" value=1>Toutes</option>
+                    <option id="véhicules" value=2>Véhicules</option>
+                    <option id="mobiliers" value=3>Mobiliers</option>
+                    <option id="animaux" value=4>Animaux</option>
+                    <option id="informatiques" value=5>Informatiques</option>
                 </select>
 
 
@@ -40,13 +46,65 @@
             <div class="mb-3">
                 <div id="bouton">
                     <div class="panel-body text-center">
-                        <input type="submit" name="btRechercher" value="Rechercher" class="boutonForm"
+                        <input type="submit" id="btRechercher" name="btRechercher" value="Rechercher" class="boutonForm"
                             title="Rechercher" />
                     </div>
                 </div>
             </div>
+	</form>
+        </div>
+
+        <div class="form-control">
+            <div class="form-control">
+                <c:forEach var="articleVendu" items="${listeArticleVendu}">
+                    <c:set var="nbArticleVendu" value="${nbArticleVendu + 1}" scope="page" />
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img class="card-img" src="https://ae01.alicdn.com/kf/HTB1EDhcbRWD3KVjSZKPq6yp7FXaT/618-230-610mm-bricolage-ordinateur-PC-Gamer-bo-tier-en-forme-de-diamant-en-alliage-d.jpg">
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Titre : ${articleVendu.nom}</h5>
+                                <p class="card-text">Prix : ${articleVendu.prixVente} points</p>
+                                <p class="card-text">Description : ${articleVendu.description}</p>
+                                <p class="card-text">Fin de l'enchère : ${articleVendu.dateFinEncheres}</p>
+                                <p class="card-text">Retrait : ${articleVendu.DateFinEnchere}</p>
+                                <p class="card-text">Vendeur : ${utilisateur.Pseudo}</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </c:forEach>
+
+
+            <div class="form-control">
+                <c:forEach var="articleVendu" items="${listeArticleVendu}">
+                    <c:set var="nbArticleVendu" value="${nbArticleVendu + 2}" scope="page" />
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img class="card-img" src="http://www.cevennes-gite.eu/data/images/blog/blog-2020/dsc_3889w.jpg">
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Titre : ${articleVendu.nom}</h5>
+                                <p class="card-text">Prix : ${articleVendu.prixVente} points</p>
+                                <p class="card-text">Description : ${articleVendu.description}</p>
+                                <p class="card-text">Fin de l'enchère : ${articleVendu.dateFinEncheres}</p>
+                                <p class="card-text">Retrait : ${articleVendu.DateFinEnchere}</p>
+                                <p class="card-text">Vendeur : ${utilisateur.Pseudo}</p>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
 
         </div>
+
+        ------------------------------------------ A EFFACER: ----------------------------------------------s
+
+
 
         <div class="form-control">
             <div class="form-control">
@@ -58,8 +116,10 @@
                 <table id="subscription-table" class="subscription-table">
 
 
-
                     <tbody>
+
+                        <a aAfficher></a>
+
                         <h5>PC Gamer pour travailler</h5>
 
                         <tr>
@@ -119,5 +179,9 @@
             </div>
 
         </div>
+
+        ----------------------------------------------------------
+
     </body>
+
     </html>

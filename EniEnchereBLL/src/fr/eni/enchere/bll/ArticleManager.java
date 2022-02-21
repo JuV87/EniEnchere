@@ -6,29 +6,11 @@ import fr.eni.enchere.bll.utils.EniConstantes;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dao.DALException;
 import fr.eni.enchere.dao.DAOFactory;
-import fr.eni.enchere.dao.UtilisateurDAO;
 
-public class UtilisateurManager {
-
-
-	private  UtilisateurDAO utilisateurDAO;
-
-	public UtilisateurManager() {
-		this.utilisateurDAO=DAOFactory.getInstance().getUtilisateurDAO();
-	}
+public class ArticleManager {
 	
-	/*
-	 * 
-	 */
-
-	public List<Utilisateur> selectionnerTousLesUtilisateurs() throws BusinessException, Exception
-	{
-		return this.utilisateurDAO.selectAll();
-	}
 	
-	/*
-	 * 
-	 */
+	
 	
 	public Utilisateur selectById(int noUtilisateur) throws BusinessException {
 		Utilisateur user=null;
@@ -42,10 +24,6 @@ public class UtilisateurManager {
 		
 		return user;
 	}
-	
-	/*
-	 * 
-	 */
 
 	public EniResponse ajouterUtilisateur(Utilisateur newUtilisateur) {	
 		boolean success = false;
@@ -62,25 +40,6 @@ public class UtilisateurManager {
 		return response;
 	}
 	
-	/*
-	 * 
-	 */
-	
-	public boolean loginUser(String email, String password) throws BusinessException {
-		boolean success=false;
-		try {
-			success =DAOFactory.getInstance().getUtilisateurDAO().loginUser(email, password);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return success;
-	}
-	
-	/*
-	 * 
-	 */
-
 	public void supprimerUtilisateur(int noUtilisateur) throws BusinessException{
 		try {
 			this.utilisateurDAO.delete(noUtilisateur);
@@ -88,6 +47,10 @@ public class UtilisateurManager {
 			e.printStackTrace();
 		}
 	}
+	
+	public List<Utilisateur> selectionnerTousLesUtilisateurs() throws BusinessException, Exception
+	{
+		return this.utilisateurDAO.selectAll();
+	}
+
 }
-
-
