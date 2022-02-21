@@ -27,106 +27,109 @@
 	<div class="col text-center">
 		<h2>Nouvelle vente</h2>
 	</div>
-	<div style="padding: 1rem">
-		<div class="row">
-			<div class="col-sm-3">
-				<div class="form-group">
-					<label for="nom"></label>
-					<h6>Article :</h6>
-					<input type="text" class="form-control" id="article">
+	<form method="post" action="/VendreArticleServlet">
+		<div style="padding: 1rem">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label for="nom"></label>
+						<h6>Article :</h6>
+						<input type="text" class="form-control" id="article" name="nom">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label for="selection"></label>
+						<h6>Catégorie :</h6>
+						<select id="selection" class="form-control" name="categorie">
+							<option value=""></option>
+							<option value="">Option 1</option>
+							<option value="">Option 2</option>
+							<option value="">Option 3</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label for="bio"></label>
+						<h6>Description :</h6>
+						<textarea class="form-control" id="bio" rows="3"
+							name="description"></textarea>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm-3">
-				<div class="form-group">
-					<label for="selection"></label>
-					<h6>Catégorie :</h6>
-					<select id="selection" class="form-control">
-						<option value=""></option>
-						<option value="">Option 1</option>
-						<option value="">Option 2</option>
-						<option value="">Option 3</option>
-					</select>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-3">
-				<div class="form-group">
-					<label for="bio"></label>
-					<h6>Description :</h6>
-					<textarea class="form-control" id="bio" rows="3"></textarea>
-				</div>
-			</div>
-		</div>
-	</div>
+	</form>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6">
 				<h6>Photo de l'article</h6>
 			</div>
-				<div class="col-sm-6">
+			<div class="col-sm-6">
 				<button type="button" class="btn btn-primary btn-sm">UPLOADER</button>
-				</div>
+			</div>
 		</div>
 	</div>
 
 
-		<div style="padding: 1rem">
+	<div style="padding: 1rem">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="form-group">
+					<div class="text-center">
+						<img
+							src="https://ae01.alicdn.com/kf/HTB1EDhcbRWD3KVjSZKPq6yp7FXaT/618-230-610mm-bricolage-ordinateur-PC-Gamer-bo-tier-en-forme-de-diamant-en-alliage-d.jpg"
+							height="150px" width="150px" class="img-rounded">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="padding: 1rem">
+		<div class="container">
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="form-group">
-						<div class="text-center">
-							<img
-								src="https://ae01.alicdn.com/kf/HTB1EDhcbRWD3KVjSZKPq6yp7FXaT/618-230-610mm-bricolage-ordinateur-PC-Gamer-bo-tier-en-forme-de-diamant-en-alliage-d.jpg"
-								height="150px" width="150px" class="img-rounded">
-						</div>
+						<label for="prix-initial"></label>
+						<h6>Prix initial :</h6>
+						<input type="number" id="prix-initial" name="tentacles" min="1"
+							max="150" name="prix-initial">
 					</div>
 				</div>
 			</div>
 		</div>
-		<div style="padding: 1rem">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="form-group">
-							<label for="prix-initial"></label>
-							<h6>Prix initial :</h6>
-							<input type="number" id="prix-initial" name="tentacles" min="1"
-								max="150">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	</div>
 
-		<div style="padding: 1rem">
-			<label for="start"></label>
-			<h6>Date de l'enchère</h6>
-			<input type="date" id="start" name="trip-start" value="2022-03-01"
-				min="2022-01-01" max="3000-12-31">
-		</div>
-		<div style="padding: 1rem">
-			<label for="start"></label>
-			<h6>Fin de l'enchère</h6>
-			<input type="date" id="start" name="trip-start" value="2022-03-01"
-				min="2022-01-01" max="3000-12-31">
-		</div>
-		<div style="padding: 1rem">
-			<div class="row">
-				<div class="col-sm-3">
-					<h6 class="mb-0" style="padding: 1rem">Retrait :</h6>
-				</div>
+	<div style="padding: 1rem">
+		<label for="start"></label>
+		<h6>Date de l'enchère</h6>
+		<input type="date" id="start" name="trip-start" value="2022-03-01"
+			min="2022-01-01" max="3000-12-31" name="date-debut">
+	</div>
+	<div style="padding: 1rem">
+		<label for="start"></label>
+		<h6>Fin de l'enchère</h6>
+		<input type="date" id="start" name="trip-start" value="2022-03-01"
+			min="2022-01-01" max="3000-12-31" name="date-fin">
+	</div>
+	<div style="padding: 1rem">
+		<div class="row">
+			<div class="col-sm-3">
+				<h6 class="mb-0" style="padding: 1rem">Retrait :</h6>
 			</div>
 		</div>
-		<div class="col text-left">
-			<button onclick="window.location.href = './VendreArticleServlet';"
-				type="button" class="btn btn-primary" data-bs-toggle="button"
-				autocomplete="off" aria-pressed="true">Enregistrer</button>
-			<button onclick="window.location.href = './HomeConnexionServlet';"
-				type="button" class="btn btn-primary" data-bs-toggle="button"
-				autocomplete="off" aria-pressed="true">Annuler</button>
-		</div>
+	</div>
+	<div class="col text-left">
+		<button onclick="window.location.href = './VendreArticleServlet';"
+			type="button" class="btn btn-primary" data-bs-toggle="button"
+			autocomplete="off" aria-pressed="true">Enregistrer</button>
+		<button onclick="window.location.href = './HomeConnexionServlet';"
+			type="button" class="btn btn-primary" data-bs-toggle="button"
+			autocomplete="off" aria-pressed="true">Annuler</button>
+	</div>
 </body>
 </html>
