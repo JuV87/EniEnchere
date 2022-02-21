@@ -29,8 +29,9 @@ public class DeconnexionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		session.invalidate();            
-		request.getRequestDispatcher("/HomePage.jsp").forward(request,response); 
+		session.invalidate();   
+		response.sendRedirect(request.getContextPath() + "/LoginServlet" );
+		
 	}
 
 	/**
