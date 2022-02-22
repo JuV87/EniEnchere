@@ -51,7 +51,7 @@ public class ModificationProfileServlet extends HttpServlet {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        request.setAttribute("profil", user);
+        request.setAttribute("profil", user); 
         request.getRequestDispatcher("/WEB-INF/ModificationProfil.jsp").forward(request,response); 
     }
 }
