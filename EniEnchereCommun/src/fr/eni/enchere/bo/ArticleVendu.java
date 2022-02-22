@@ -10,6 +10,8 @@ public class ArticleVendu {
 	private Date dateDebutEnchere;
 	private Date dateFinEnchere;
 	private String miseAPrix;
+	private int noUtilisateur;
+	
 	private int prixVente;
 	
 	public  enum  EtatVente {
@@ -17,7 +19,7 @@ public class ArticleVendu {
 		Vendu	
 	}
 	private EtatVente etatVente;
-	private Utilisateur vente;
+	private Utilisateur user;
 	private Categorie categorieArticle;
 	private Retrait lieuRetrait;
 	
@@ -33,6 +35,20 @@ public class ArticleVendu {
 		this.setMiseAPrix(miseAPrix);
 		this.setPrixVente(prixVente);
 		this.setEtatVente(etatVente);
+		
+	}
+	
+	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, String miseAPrix, int prixVente, int noUtilisateur,Categorie categorieArticle) {
+		this.setNoArticle(noArticle);
+		this.setNomArticle(nomArticle);
+		this.setDescription(description);
+		this.setDateDebutEnchere(dateDebutEnchere);
+		this.setDateFinEnchere(dateFinEnchere);
+		this.setMiseAPrix(miseAPrix);
+		this.setPrixVente(prixVente);
+		this.setNoUtilisateur(noUtilisateur);
+		this.setCategorieArticle(categorieArticle);
+		
 		
 	}
 	
@@ -129,11 +145,11 @@ public class ArticleVendu {
 	public void setLieuRetrait(Retrait lieuRetrait) {
 		this.lieuRetrait = lieuRetrait;
 	}
-	public Utilisateur getVente() {
-		return vente;
+	public Utilisateur getUser() {
+		return user;
 	}
-	public void setVente(Utilisateur vente) {
-		this.vente = vente;
+	public void setUser(Utilisateur vente) {
+		this.user = vente;
 	}
 	public EtatVente getEtatVente() {
 		return etatVente;
@@ -142,6 +158,12 @@ public class ArticleVendu {
 		this.etatVente = etatVente;
 	}
 	
+	public int getNoUtilisateur() {
+		return noUtilisateur;
+	}
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
 	
 	
 	

@@ -64,15 +64,16 @@ public class LoginServlet extends HttpServlet {
 		
 		if (successLogin) {
 			HttpSession session = request.getSession();
-			session.setAttribute("id", session.getId());
+			
 			try {
 				user = BLLManager.getInstance().getUtilisateurManager().selectByemail(email);
+				session.setAttribute("id", user.getNoUtilisateur());
 			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			response.sendRedirect("HomeConnexionServlet");
-			session.setAttribute("messageSucces", "Bonjour, "+user.getPrenom()+" " +user.getNom()+" vous êtes connecté !");
+			session.setAttribute("messageSucces", "Bonjour, "+user.getPrenom()+" " +user.getNom()+" vous êtes connecté(e) !");
 		}
 		else {
 			// sinon erreur mot de passe

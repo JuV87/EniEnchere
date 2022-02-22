@@ -28,14 +28,14 @@
 <body>
 	<h1>ENI-Enchères</h1>
 	<div class="col text-center">
-		<h2>Pseudo</h2>
+		<h2>Mon Profil :</h2>
 	</div>
 	<div style="padding: 1rem">
 		<div class="row">
 			<div class="col-sm-3">
 				<tr class="mb-0" style="padding: 1rem">
 					<th >Pseudo :</th>
-					<td> ${profil.noUtilisateur}</td>
+					<td> ${profil.pseudo}</td>
 				</tr>
 			</div>
 		</div>

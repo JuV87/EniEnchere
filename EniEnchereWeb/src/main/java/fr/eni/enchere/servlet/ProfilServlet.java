@@ -36,18 +36,18 @@ public class ProfilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		UtilisateurManager profilUser = new UtilisateurManager();
-		int id = (int)session.getAttribute("id");
-		Utilisateur user=null;
-		try {
-			user = profilUser.selectById(id);
-		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		request.setAttribute("profil", user);
-		request.getRequestDispatcher("/WEB-INF/Profil.jsp").forward(request,response); 
-	}
+        UtilisateurManager profilUser = new UtilisateurManager();
+        int id = (int)session.getAttribute("id");
+        Utilisateur user=null;
+        try {
+            user = profilUser.selectById(id);
+        } catch (BusinessException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        request.setAttribute("profil", user);
+        request.getRequestDispatcher("/WEB-INF/Profil.jsp").forward(request,response); 
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
