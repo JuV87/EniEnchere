@@ -60,7 +60,7 @@ public class MonProfilServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HashMap<String, String> fieldsMap = new HashMap<String, String>();
-		String[] fieldList = new String[] {"pseudo", "nom"," prenom", "email"," telephone", "rue"," codePostal", "ville"," motDePasse", "credit"," administrateur"};
+		String[] fieldList = new String[] {"pseudo", "name","prenom", "email", "phone", "rue","codePostale", "city","password"};
 		
 		// on prepare les champs a tester 
 		for(String field : fieldList ) 

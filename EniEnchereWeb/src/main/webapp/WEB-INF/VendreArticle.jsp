@@ -45,10 +45,11 @@
 						<label for="selection"></label>
 						<h6>Catégorie :</h6>
 						<select id="selection" class="form-control" name="categorie">
-							<option value=""></option>
-							<option value="">Option 1</option>
-							<option value="">Option 2</option>
-							<option value="">Option 3</option>
+							<option id="toutes" value=1>Toutes</option>
+							<option id="véhicules" value=2>Véhicules</option>
+							<option id="mobiliers" value=3>Mobiliers</option>
+							<option id="animaux" value=4>Animaux</option>
+							<option id="informatiques" value=5>Informatiques</option>
 						</select>
 					</div>
 				</div>
