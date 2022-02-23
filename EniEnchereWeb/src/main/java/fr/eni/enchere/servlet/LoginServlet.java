@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.bll.BLLManager;
 import fr.eni.enchere.bll.BusinessException;
+import fr.eni.enchere.bo.ArticleVendu;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dao.DALException;
 
@@ -49,6 +50,7 @@ public class LoginServlet extends HttpServlet {
 		String password=request.getParameter("password");
 		boolean successLogin = false;
 		Utilisateur user =null;
+		ArticleVendu art =null;
 
 		
 		

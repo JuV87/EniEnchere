@@ -27,7 +27,9 @@ public class DetailMaVenteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		getServletContext().getRequestDispatcher("/WEB-INF/DetailMaVente.jsp").forward(request, response);
+		int idArticle = Integer.parseInt(request.getParamater("id"));
+		
+		
 	}
 
 	/**

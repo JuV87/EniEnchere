@@ -11,7 +11,7 @@ public class ArticleVendu {
 	private Date dateFinEnchere;
 	private String miseAPrix;
 	private int noUtilisateur;
-	
+	private int noCategorie;
 	private int prixVente;
 	
 	public  enum  EtatVente {
@@ -38,7 +38,7 @@ public class ArticleVendu {
 		
 	}
 	
-	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, String miseAPrix, int prixVente, int noUtilisateur,Categorie categorieArticle) {
+	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, String miseAPrix, int prixVente, int noUtilisateur,int noCategorie) {
 		this.setNoArticle(noArticle);
 		this.setNomArticle(nomArticle);
 		this.setDescription(description);
@@ -47,9 +47,7 @@ public class ArticleVendu {
 		this.setMiseAPrix(miseAPrix);
 		this.setPrixVente(prixVente);
 		this.setNoUtilisateur(noUtilisateur);
-		this.setCategorieArticle(categorieArticle);
-		
-		
+		this.setNoCategorie(noCategorie);
 	}
 	
 	public ArticleVendu(String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, String miseAPrix, int prixVente) {
@@ -163,6 +161,12 @@ public class ArticleVendu {
 	}
 	public void setNoUtilisateur(int noUtilisateur) {
 		this.noUtilisateur = noUtilisateur;
+	}
+	public int getNoCategorie() {
+		return noCategorie;
+	}
+	public void setNoCategorie(int noCategorie) {
+		this.noCategorie = noCategorie;
 	}
 	
 	

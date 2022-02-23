@@ -89,7 +89,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 		return listeDeTousLesUtilisateurs;
 	}
-
+	
+	/**
+	 * 
+	 */
 
 
 	@Override
@@ -142,6 +145,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 		return user;
 	}
+	
+	/**
+	 * 
+	 */
 
 	@Override
 	public void update(Utilisateur user) throws DALException {
@@ -181,6 +188,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 */
 
 	@Override
 	public boolean insert(Utilisateur user) throws DALException {
@@ -212,12 +223,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				ResultSet resultset = rqt.getGeneratedKeys();
 				if(resultset.next()){
 					user.setNoUtilisateur(resultset.getInt(1));
-
 				}
 				success=true;
 			}
-
-
+			
 		}catch(SQLException e){
 			throw new DALException("Insert utilisateur failed", e);
 		}finally {
@@ -238,8 +247,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 			}
 		return success;
-
 		}
+	
+	/**
+	 * 
+	 */
 
 	@Override
 	public void delete(int id) throws DALException {
@@ -267,6 +279,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 	}
 	
+	/**
+	 * 
+	 */
+	
 	public boolean findUser(String i, String j) throws DALException {  
 
 		boolean status=false;  
@@ -287,6 +303,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}catch(Exception e){System.out.println(e);}  
 		return status;  
 	}  
+	
+	/**
+	 * 
+	 */
 
 	@Override
 	public boolean loginUser(String username, String password) throws DALException {
@@ -328,6 +348,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 		return success;
 	}
+	
+	/**
+	 * 
+	 */
 
 	@Override
 	public Utilisateur selectBynoemail(String email) throws DALException {

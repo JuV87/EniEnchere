@@ -37,7 +37,7 @@
 							<br>
 							<h2 class="text-center">Mot de passe oublié ?</h2>
 							<br>
-							<p>Vous pouvez réinitialiser votre mot de passe ici.</p>
+							<p>Vous pouvez réinitialiser votre mot de passe ici :</p>
 							<div class="panel-body">
 
 								<form id="register-form" role="form" autocomplete="off"
@@ -60,15 +60,12 @@
 
 									<input type="hidden" class="hide" name="token" id="token"
 										value="">
-										<br><br><br><br>
-										
+										<br>
+		
 										<div class="form-group">
-										<input name="recover-submit"
-											class="btn btn-lg btn-primary btn-block"
-											value="Retour" type="submit">
+										<a href="/EniEnchereWeb/HomeServlet" class="btn btn-lg btn-primary btn-block">Retour</a>
 									</div>
 								</form>
-
 							</div>
 						</div>
 					</div>
@@ -76,8 +73,6 @@
 			</div>
 		</div>
 	</div>
-
-
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
 		integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
