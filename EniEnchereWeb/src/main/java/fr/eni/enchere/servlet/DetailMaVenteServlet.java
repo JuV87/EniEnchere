@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class HomeConnexionServlet
+ * Servlet implementation class DetailMaVenteServlet
  */
-@WebServlet("/HomeConnexionServlet")
-public class HomeConnexionServlet extends HttpServlet {
+@WebServlet("/DetailMaVenteServlet")
+public class DetailMaVenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeConnexionServlet() {
+    public DetailMaVenteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,22 +26,18 @@ public class HomeConnexionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		getServletContext().getRequestDispatcher("/HomeConnexionPage.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		int idArticle = Integer.parseInt(request.getParamater("id"));
+		
+		
 	}
 
-	
-
-	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String idCategorie = request.getParameter("categorie");
-		// where dans la BLL
-		
-		
-		getServletContext().getRequestDispatcher("/HomePage.jsp").forward(request, response);
-
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

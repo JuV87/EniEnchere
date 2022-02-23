@@ -1,8 +1,6 @@
 package fr.eni.enchere.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,21 +10,20 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.bll.BLLManager;
 import fr.eni.enchere.bll.BusinessException;
-import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.bo.ArticleVendu;
 import fr.eni.enchere.bo.Utilisateur;
-import fr.eni.enchere.dao.DALException;
 
 /**
- * Servlet implementation class Profil
+ * Servlet implementation class EncherirServlet
  */
-@WebServlet("/ProfilServlet")
-public class ProfilServlet extends HttpServlet {
+@WebServlet("/EncherirServlet")
+public class EncherirServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProfilServlet() {
+    public EncherirServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,25 +32,28 @@ public class ProfilServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-        UtilisateurManager profilUser = new UtilisateurManager();
-        int id = (int)session.getAttribute("id");
-        Utilisateur user=null;
-        try {
-            user = profilUser.selectById(id);
-        } catch (BusinessException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        request.setAttribute("profil", user);
-        request.getRequestDispatcher("/WEB-INF/Profil.jsp").forward(request,response); 
-    }
+		// TODO Auto-generated method stub
+		getServletContext().getRequestDispatcher("/WEB-INF/Encherir.jsp").forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		Utilisateur user =null;
+		ArticleVendu art =null;		
+		HttpSession session = request.getSession();
+		int prix=Integer.parseInt(request.getParameter("prix"));
+		
+		try {
+			user = BLLManager.getInstance().getUtilisateurManager().selectById((int) session.getAttribute("id"));
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//appel à la BLL
+		BLLManager.getInstance().getArticleManager().encherir(art, user, prix);
 	}
 
 }

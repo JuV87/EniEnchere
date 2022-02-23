@@ -43,6 +43,19 @@ public class UtilisateurManager {
 		return user;
 	}
 	
+	public Utilisateur selectByemail(String email) throws BusinessException {
+		Utilisateur user=null;
+	
+			try {
+				user = DAOFactory.getInstance().getUtilisateurDAO().selectBynoemail(email);
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		return user;
+	}
+	
 	/*
 	 * 
 	 */
@@ -88,6 +101,18 @@ public class UtilisateurManager {
 			e.printStackTrace();
 		}
 	}
+	/*
+	 * 
+	 */
+	
+	public void update(Utilisateur user) throws BusinessException {
+		
+		try {
+			this.utilisateurDAO.update(user);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+}
 }
 
 

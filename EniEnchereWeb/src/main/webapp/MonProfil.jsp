@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <!DOCTYPE html>
   <html>
 
   <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
@@ -21,9 +21,9 @@
 
    <body>
         <div class="eech-page-wrapper">
-            <h2 class="eench-h-title">ENI Enchères</h2>
+            <h2 class="eench-h-title">ENI EnchÃ¨res</h2>
 
-            <h3 class="text-center eench-h-subtitle">Créer un compte</h3>
+            <h3 class="text-center eench-h-subtitle">CrÃ©er un compte</h3>
             <form method="post" action="MonProfilServlet">
                 <!-- Input : Pseudo -->
                 <div class="mb-3">
@@ -97,12 +97,10 @@
 
                 <!-- Buttons  -->
                 <div class="d-grid gap-2 d-flex">
-                    <input type="submit" class="btn btn-primary col-6" value="Créer">
-                    <button type="button" class="btn btn-primary col-6">Annuler</button>
+                    <input type="submit" class="btn btn-primary col-6" value="CrÃ©er">
+                    <a href="/EniEnchereWeb/HomeServlet" class="btn btn-primary col-6">Annuler</a>
                 </div>
-
             </form>
         </div>
     </body>
-
   </html>

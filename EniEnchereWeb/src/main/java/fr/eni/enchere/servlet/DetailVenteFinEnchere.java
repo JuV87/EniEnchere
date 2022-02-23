@@ -8,18 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class manipulationProfile
+ * Servlet implementation class DetailVenteFinEnchere
  */
-@WebServlet("/manipulationProfile")
-public class manipulationProfile extends HttpServlet {
+@WebServlet("/DetailVenteFinEnchere")
+public class DetailVenteFinEnchere extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	
-	
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public manipulationProfile() {
+    public DetailVenteFinEnchere() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -28,24 +27,15 @@ public class manipulationProfile extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		getServletContext().getRequestDispatcher("/WEB-INF/DetailVenteFinEnchere.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String enregistrer = request.getParameter("enregistrer");
-		String supprimercompte = request.getParameter("supprimer mon compte ");
-		String retour = request.getParameter("retour");
-		
-		
-	        
-	        
-	        
-	        }
-		
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
-
+}

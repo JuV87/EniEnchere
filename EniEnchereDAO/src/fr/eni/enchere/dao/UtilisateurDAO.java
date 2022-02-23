@@ -8,6 +8,8 @@ public interface UtilisateurDAO {
 
 	//Sélectionner un Utilisateur par son noUtilisateur
 	public Utilisateur selectBynoUtilisateur(int noUtilisateur) throws DALException;
+	
+	public Utilisateur selectBynoemail(String email) throws DALException;
 
 	//Sélectionner tous les utilisateurs
 	public List<Utilisateur> selectAll() throws DALException;

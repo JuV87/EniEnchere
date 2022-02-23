@@ -15,5 +15,6 @@
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/EniEnchereBLL"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/EniEnchereCommun"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jstl-1.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
