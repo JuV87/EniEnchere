@@ -22,7 +22,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	
 	private static final String sqlSelectById = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente " +
 			" FROM articles_vendus where no_article = ?";
-	private static final String sqlSelectAll = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente " +  
+	private static final String sqlSelectAll = "SELECT * " +  
 			" FROM articles_vendus";
 	private static final String sqlUpdate = "UPDATE articles_vendus SET nom_article=?,nom_article=?,date_debut_encheres=?,date_fin_encheres=?,prix_initial=?,prix_vente=?, where no_article=?";
 	private static final String sqlInsert = "INSERT INTO articles_vendus(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur, no_categorie) VALUES (?,?,?,?,?,?,?,?)";
