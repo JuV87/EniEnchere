@@ -49,9 +49,9 @@ public class ArticleManager {
 		}
 	}
 	
-	public List<ArticleVendu> selectionnerTousLesUtilisateurs() throws BusinessException, Exception
+	public List<ArticleVendu> selectionnerTousLesArticles() throws BusinessException, Exception
 	{
-		return this.articleDAO.selectAll();
+		return DAOFactory.getInstance().getArticleDAO().selectAll();
 	}
 
 }
