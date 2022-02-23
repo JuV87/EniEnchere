@@ -25,11 +25,13 @@
 <title>Mon Profil</title>
 </head>
 <body>
-	<h1>ENI - Enchères</h1>
+	<h1>
+		<a href="/HomeConnexionServlet"> ENI - Enchères </a>
+	</h1>
 	<div class="col text-center">
 		<h2>Mon Profil</h2>
 	</div>
-	<form method="post" action="MonProfilServlet">
+	<form method="post" action="ModificationProfilServlet">
 		<!-- Input : Pseudo -->
 		<div style="padding: 1rem">
 			<div class="row">
@@ -121,9 +123,8 @@
 
 		<!-- Buttons  -->
 		<div class="d-grid gap-1 d-flex">
-			<input type="submit" class="btn btn-primary col-3"
-				value="Enregistrer"> <input type="submit"
-				class="btn btn-primary col-5" value="Supprimer mon compte">
+			<input type="submit" class="btn btn-primary col-3"value="Enregistrer"> 
+			<input type="submit"class="btn btn-primary col-5" value="Supprimer mon compte">
 			<button onclick="window.location.href = './HomeConnexionServlet';" type="button" class="btn btn-primary col-3">Retour</button>
 		</div>
 	</form>

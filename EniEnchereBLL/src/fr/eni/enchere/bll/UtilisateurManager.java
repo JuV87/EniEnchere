@@ -101,6 +101,18 @@ public class UtilisateurManager {
 			e.printStackTrace();
 		}
 	}
+	/*
+	 * 
+	 */
+	
+	public void update(Utilisateur user) throws BusinessException {
+		
+		try {
+			this.utilisateurDAO.update(user);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+}
 }
 
 
