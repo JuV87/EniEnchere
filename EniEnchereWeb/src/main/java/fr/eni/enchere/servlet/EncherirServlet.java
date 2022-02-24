@@ -1,6 +1,8 @@
 package fr.eni.enchere.servlet;
 
 import java.io.IOException;
+import java.text.ParseException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +37,7 @@ public class EncherirServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		getServletContext().getRequestDispatcher("/WEB-INF/Encherir.jsp").forward(request, response);
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -44,16 +46,16 @@ public class EncherirServlet extends HttpServlet {
 		ArticleVendu art =null;		
 		HttpSession session = request.getSession();
 		int prix=Integer.parseInt(request.getParameter("prix"));
+		int articleId = Integer.parseInt(request.getParameter("id"));
 		
 		try {
 			user = BLLManager.getInstance().getUtilisateurManager().selectById((int) session.getAttribute("id"));
-		} catch (BusinessException e) {
+			art = BLLManager.getInstance().getArticleManager().selectById(articleId);
+		} catch (BusinessException | ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		//appel à la BLL
 		BLLManager.getInstance().getArticleManager().encherir(art, user, prix);
 	}
-
 }

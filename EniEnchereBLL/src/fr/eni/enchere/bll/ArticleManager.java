@@ -63,7 +63,7 @@ public class ArticleManager {
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		if (prix<loggedUser.getCredit()) {
+		if (prix<=loggedUser.getCredit()) {
 		
 		}else {
 			nbError++;
@@ -74,7 +74,6 @@ public class ArticleManager {
 		try {
 			DAOFactory.getInstance().getEnchereDAO().selectBestEnchere(article);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (prix>enchere.getMontantEnchere()) {
@@ -88,16 +87,17 @@ public class ArticleManager {
 			return false;
 		}else {
 			Enchere NouvelleEnchere = new Enchere (new Date(), prix);
+			try {
+				DAOFactory.getInstance().getEnchereDAO().insert(null);
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return false;
 		}
 
 		//DAO appel 3
-		try {
-			DAOFactory.getInstance().getEnchereDAO().insert(null);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return false;
+		
 
 	}
 	

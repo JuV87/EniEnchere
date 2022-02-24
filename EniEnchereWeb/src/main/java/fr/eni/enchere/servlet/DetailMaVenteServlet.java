@@ -48,7 +48,7 @@ public class DetailMaVenteServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("article", article);
-		   RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailMaVente.jsp");
+		   RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Encherir.jsp");
 	        rd.forward(request, response);
 	
     }

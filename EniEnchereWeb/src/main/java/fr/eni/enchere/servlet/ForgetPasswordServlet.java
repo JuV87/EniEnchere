@@ -49,7 +49,9 @@ public class ForgetPasswordServlet extends HttpServlet {
 			// recuperation des parametres de la requette
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
-		if (email != null )
+		
+		
+		if (email != null );
 			
 			 //soumettre 
 		
@@ -58,10 +60,7 @@ public class ForgetPasswordServlet extends HttpServlet {
 		 
 		 RequestDispatcher dispatcher = request.getRequestDispatcher("/LoginServlet");
 		 dispatcher.forward(request, response);
-		 
-		
-		 
-	
+
 	}
 
 }

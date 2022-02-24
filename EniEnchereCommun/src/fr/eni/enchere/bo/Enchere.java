@@ -10,6 +10,7 @@ public class Enchere {
 	private ArticleVendu art;
 	
 	
+	
 	public Enchere() {
 		
 	}
