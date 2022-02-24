@@ -27,7 +27,7 @@
 </head>
 <body>
 	<h1>
-		<a href="/HomeConnexionServlet"> ENI - Enchères </a>
+		<a href="/HomeConnexionServlet" style="color:#000000;"> ENI - Enchères </a>
 	</h1>
 	<div class="col text-center">
 		<h2>Mon Profil :</h2>

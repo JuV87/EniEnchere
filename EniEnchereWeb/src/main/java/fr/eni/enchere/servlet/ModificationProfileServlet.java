@@ -66,7 +66,7 @@ public class ModificationProfileServlet extends HttpServlet {
 	        }
 	        
 	        // Je récupere les nouvelles de l'utilisateur
-	       user.setPseudo(request.getParameter("pseudo"));
+	        user.setPseudo(request.getParameter("pseudo"));
 	        user.setNom(request.getParameter("name"));
 	        user.setPrenom(request.getParameter("prenom"));
 	        user.setEmail(request.getParameter("email"));

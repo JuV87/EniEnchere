@@ -26,7 +26,7 @@
 </head>
 <body>
 	<form method="post" action="VendreArticleServlet">
-		<h1>ENI-Enchère</h1>
+		<a href="/HomeConnexionServlet" style="color:#000000;"> ENI - Enchères </a>
 		<div class="col text-center">
 			<h2>Nouvelle vente</h2>
 		</div>
