@@ -23,7 +23,7 @@
 <title>DetailVenteFinEnchere</title>
 </head>
 <body>
-	<h1>ENI-Enchère</h1>
+	<a href="/HomeConnexionServlet" style="color:#000000;"> ENI - Enchères </a>
 	<div class="col text-center">
 		<h2>a remporté l'enchere</h2>
 	</div>

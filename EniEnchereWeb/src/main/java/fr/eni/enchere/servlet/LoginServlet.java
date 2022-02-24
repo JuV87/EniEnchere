@@ -52,6 +52,10 @@ public class LoginServlet extends HttpServlet {
 		Utilisateur user =null;
 		ArticleVendu art =null;
 
+		String message = "";
+		
+		if ((email != null && !"".equals(email))&&(password != null && !"".equals(password))) {
+			
 		
 		
 			try {
@@ -61,8 +65,8 @@ public class LoginServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			String message = "";
+		}
+		
 		
 		if (successLogin) {
 			HttpSession session = request.getSession();
@@ -75,7 +79,7 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.sendRedirect("HomeConnexionServlet");
-			session.setAttribute("messageSucces", "Bonjour, "+user.getPrenom()+" " +user.getNom()+" vous êtes connecté(e) !");
+			session.setAttribute("messageSucces", "Bonjour, "+user.getPrenom()+" " +user.getNom()+" vous ï¿½tes connectï¿½(e) !");
 		}
 		else {
 			// sinon erreur mot de passe

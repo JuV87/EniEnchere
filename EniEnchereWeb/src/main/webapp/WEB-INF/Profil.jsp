@@ -27,7 +27,7 @@
 </head>
 <body>
 	<h1>
-		<a href="/HomeConnexionServlet"> ENI - Enchères </a>
+		<a href="/EniEnchereWeb/HomeConnexionServlet" style="color:#000000;"> ENI - Enchères </a>
 	</h1>
 	<div class="col text-center">
 		<h2>Mon Profil :</h2>
@@ -101,7 +101,7 @@
 	</div>
 
 	<div class="col text-center">
-		<button onclick="window.location.href = './ModificationServlet';"
+		<button onclick="window.location.href = './ModificationProfileServlet';"
 			type="button" class="btn btn-primary" data-bs-toggle="button"
 			autocomplete="off" aria-pressed="true">Modifier</button>
 	</div>

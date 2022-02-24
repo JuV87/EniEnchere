@@ -37,7 +37,18 @@ public class ArticleVendu {
 		this.setEtatVente(etatVente);
 		
 	}
-	
+	/**
+	 * 
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEnchere
+	 * @param dateFinEnchere
+	 * @param miseAPrix
+	 * @param prixVente
+	 * @param noUtilisateur
+	 * @param noCategorie
+	 */
 	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEnchere, Date dateFinEnchere, String miseAPrix, int prixVente, int noUtilisateur,int noCategorie) {
 		this.setNoArticle(noArticle);
 		this.setNomArticle(nomArticle);

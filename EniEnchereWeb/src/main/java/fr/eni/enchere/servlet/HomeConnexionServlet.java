@@ -21,6 +21,9 @@ import fr.eni.enchere.bo.Categorie;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dao.DAOFactory;
 
+import fr.eni.enchere.bll.BLLManager;
+import fr.eni.enchere.bo.ArticleVendu;
+
 /**
  * Servlet implementation class HomeConnexionServlet
  */
@@ -71,6 +74,7 @@ public class HomeConnexionServlet extends HttpServlet {
  	
 		//j'affiche la vue
 		getServletContext().getRequestDispatcher("/HomeConnexionPage.jsp").forward(request, response);
+
 	}
 
 	/**
