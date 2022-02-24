@@ -2,6 +2,7 @@ package fr.eni.enchere.dao;
 
 
 import fr.eni.enchere.dao.jdbc.ArticleDAOJdbcImpl;
+import fr.eni.enchere.dao.jdbc.CategorieDAOJdbcImpl;
 import fr.eni.enchere.dao.jdbc.EnchereDAOJdbcImpl;
 import fr.eni.enchere.dao.jdbc.UtilisateurDAOJdbcImpl;
 
@@ -11,7 +12,8 @@ public class DAOFactory {
 	private UtilisateurDAO utilisateurDAO;
 	private ArticleDAO articleDAO;
 	private EnchereDAO enchereDAO;
-
+	private CategorieDAO categorieDAO;
+	
 	public UtilisateurDAO getUtilisateurDAO() {
 		if (utilisateurDAO == null) {
 			utilisateurDAO = new UtilisateurDAOJdbcImpl();
@@ -39,6 +41,13 @@ public class DAOFactory {
 		}
 		
 		return instance;
+	}
+	
+	public CategorieDAO getCategorieDAO() {
+		if (categorieDAO == null) {
+			categorieDAO = new CategorieDAOJdbcImpl();
+		}
+		return categorieDAO;
 	}
 }
 

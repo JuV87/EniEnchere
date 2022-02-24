@@ -13,21 +13,25 @@ import java.util.List;
 import java.util.Locale;
 
 import fr.eni.enchere.bo.ArticleVendu;
+import fr.eni.enchere.bo.Enchere;
 import fr.eni.enchere.bo.ArticleVendu.EtatVente;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dao.ArticleDAO;
 import fr.eni.enchere.dao.DALException;
+import fr.eni.enchere.dao.utils.EniDAOMapping;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 	
-	private static final String sqlSelectById = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente " +
+	private static final String sqlSelectById = "SELECT * " +
 			" FROM articles_vendus where no_article = ?";
 	private static final String sqlSelectAll = "SELECT * " +  
 			" FROM articles_vendus";
 	private static final String sqlUpdate = "UPDATE articles_vendus SET nom_article=?,nom_article=?,date_debut_encheres=?,date_fin_encheres=?,prix_initial=?,prix_vente=?, where no_article=?";
+	private static final String sqlUpdateEnchere = "UPDATE articles_vendus SET prix_vente=? where no_article=?";
+
 	private static final String sqlInsert = "INSERT INTO articles_vendus(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur, no_categorie) VALUES (?,?,?,?,?,?,?,?)";
 	private static final String sqlDelete = "DELETE FROM articles_vendus WHERE no_article=?";
-	
+	private static final String SELECT_ARTICLE_BY_ID = "SELECT * FROM ARTICLES_VENDUS a LEFT OUTER JOIN UTILISATEURS u ON a.no_utilisateur=u.no_utilisateur LEFT OUTER JOIN ENCHERES e ON a.no_article=e.no_article LEFT OUTER JOIN CATEGORIES c ON a.no_categorie=c.no_categorie WHERE a.no_article=?";
 	@Override
 	public List<ArticleVendu> selectAll() throws DALException, ParseException {
 		Connection cnx = null;
@@ -117,7 +121,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 						dateF,
 						rs.getString("prix_initial"),
 						rs.getInt("prix_vente"));
-
+				
+						art.setNoUtilisateur(rs.getInt("no_utilisateur"));
+						art.setNoCategorie(rs.getInt("no_categorie"));
 			}
 
 		} catch (SQLException e) {
@@ -176,6 +182,81 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			}
 		}
 	}
+	
+	@Override
+	public void updateEnchere(ArticleVendu art) throws DALException {
+
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		try {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+	
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlUpdateEnchere);
+			rqt.setInt(1, art.getPrixVente());
+			rqt.setInt(2, art.getNoArticle());
+			
+			rqt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DALException("Update article failed - " + art, e);
+		} finally {
+			try {
+				if (rqt != null){
+					rqt.close();
+				}
+				if(cnx !=null){
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	@Override
+	public ArticleVendu selectArticleEnVente(Utilisateur user) throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		ArticleVendu art=null;
+	
+
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(SELECT_ARTICLE_BY_ID);
+			rqt.setInt(1, art.getNoArticle());
+			rs = rqt.executeQuery();
+			if (rs.next()){
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+
+				art = EniDAOMapping.mappingArticle(rs);
+				user = EniDAOMapping.mappingUser(rs);
+				//Associations
+				art.setUser(user);
+			}
+
+		} catch (SQLException e) {
+			throw new DALException("selectById failed - id = ", e);
+		} finally {
+			try {
+				if (rs != null){
+					rs.close();
+				}
+				if (rqt != null){
+					rqt.close();
+				}
+				if(cnx!=null){
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return art;
+	}
+
 
 	@Override
 	public boolean insert(ArticleVendu art) throws DALException {

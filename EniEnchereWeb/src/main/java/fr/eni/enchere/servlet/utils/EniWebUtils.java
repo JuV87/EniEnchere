@@ -1,5 +1,11 @@
 package fr.eni.enchere.servlet.utils;
 
-public class EniWebUtils {
+import fr.eni.enchere.bo.Utilisateur;
 
+public class EniWebUtils {
+	
+	public static Utilisateur getLoggedUser() {
+		return null;
+		
+	}
 }

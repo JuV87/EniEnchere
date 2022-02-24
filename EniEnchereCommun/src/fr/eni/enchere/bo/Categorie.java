@@ -17,9 +17,16 @@ public class Categorie {
 		this.setLibelle(libelle);
 	}
 	
+	public Categorie(String noCategorie) {
+		this.setNoCategorie(noCategorie);
+	
+	}
 	
 	
 	
+	public Categorie(int i, String string) {
+		this.setLibelle(string);
+	}
 	//getter-setter
 	public String getNoCategorie() {
 		return noCategorie;
