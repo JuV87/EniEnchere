@@ -101,7 +101,7 @@
 	</div>
 
 	<div class="col text-center">
-		<button onclick="window.location.href = './ModificationServlet';"
+		<button onclick="window.location.href = './ModificationProfileServlet';"
 			type="button" class="btn btn-primary" data-bs-toggle="button"
 			autocomplete="off" aria-pressed="true">Modifier</button>
 	</div>

@@ -53,7 +53,7 @@ public class EncherirServlet extends HttpServlet {
 		}
 		
 		//appel à la BLL
-		BLLManager.getInstance().getArticleManager().encherir(art, user, prix);
+		//BLLManager.getInstance().getArticleManager().encherir(art, user, prix);
 	}
 
 }
