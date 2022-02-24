@@ -24,6 +24,9 @@ public class Categorie {
 	
 	
 	
+	public Categorie(int i, String string) {
+		this.setLibelle(string);
+	}
 	//getter-setter
 	public String getNoCategorie() {
 		return noCategorie;

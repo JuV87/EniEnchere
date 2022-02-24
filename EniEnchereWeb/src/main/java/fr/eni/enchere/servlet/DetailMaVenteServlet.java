@@ -40,6 +40,7 @@ public class DetailMaVenteServlet extends HttpServlet {
 		
 		try {
 			article = BLLManager.getInstance().getArticleManager().selectById(idArticle);
+			
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

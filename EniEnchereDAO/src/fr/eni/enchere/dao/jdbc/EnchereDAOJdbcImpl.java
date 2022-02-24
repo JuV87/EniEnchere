@@ -20,10 +20,10 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 	private static final String sqlSelectBestEnchere = "SELECT TOP 1 *" +
 			" FROM ENCHERES " 
-			+"INNER JOIN ARTICLES_VENDUS ON (ENCHERES.no_article = ARTICLES_VENDUS.no_article) INNER JOIN UTILISATEURS ON"
-		    +" (ENCHERES.no_utilisateur = UTILISATEURS.no_utilisateur) where no_article = ? ORDER BY montant_enchere DESC";
+			+"INNER JOIN ARTICLES_VENDUS ON (ENCHERES.no_article = ARTICLES_VENDUS.no_article) INNER JOIN UTILISATEURS ON "
+		    +"(ENCHERES.no_utilisateur = UTILISATEURS.no_utilisateur) where ENCHERES.no_article = ? ORDER BY montant_enchere DESC";
 	
-	private static final String sqlInsert = "INSERT INTO ENCHERES(no_utilisateur,no_article,date_enchere,montant_enchere,) VALUES (?,?,?,?";
+	private static final String sqlInsert = "INSERT INTO ENCHERES(no_utilisateur,no_article,date_enchere,montant_enchere) VALUES (?,?,?,?)";
 
 	/**
 	 * 
@@ -43,7 +43,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 			cnx = JdbcTools.getConnection();
 			//cnx.setAutoCommit(false);
-			rqt = cnx.prepareStatement(sqlSelectBestEnchere);
+			rqt = cnx.prepareStatement(sqlInsert);
 			rqt.setInt(1, enchere.getUser().getNoUtilisateur());
 			rqt.setInt(2, enchere.getArt().getNoArticle());
 			rqt.setDate(3, java.sql.Date.valueOf(formatter.format(enchere.getMontantEnchere())));
@@ -84,6 +84,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectBestEnchere);
+			rqt.setInt(1, art.getNoArticle());
 			rs = rqt.executeQuery();
 			if (rs.next()){
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);

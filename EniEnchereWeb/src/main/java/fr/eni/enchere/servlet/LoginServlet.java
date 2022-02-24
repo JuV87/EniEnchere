@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 		Utilisateur user =null;
 		ArticleVendu art =null;
 
-		
+		 	
 		
 			try {
 				successLogin = BLLManager.getInstance().getUtilisateurManager().loginUser(email, password);

@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import fr.eni.enchere.bo.ArticleVendu;
+import fr.eni.enchere.bo.Utilisateur;
 
 public interface ArticleDAO {
 
@@ -22,6 +23,8 @@ public interface ArticleDAO {
 
 	//Supprimer un article
 	public void delete(int id) throws DALException;
+
+	public ArticleVendu selectArticleEnVente(Utilisateur user) throws DALException;
 
 }
 
