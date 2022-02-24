@@ -6,6 +6,7 @@ public class BLLManager {
 	
 	private UtilisateurManager utilisateurManager;
 	private ArticleManager articleManager;
+	private CategorieManager categorieManager;
 	
 	public static BLLManager getInstance() {
 		if (instance == null) {
@@ -28,4 +29,12 @@ public class BLLManager {
 		}
 		return articleManager;
 	}
+
+	public CategorieManager getCategorieManager() {
+		if (categorieManager == null) {
+			categorieManager = new CategorieManager();
+		}
+		return categorieManager;
+	}
+
 }

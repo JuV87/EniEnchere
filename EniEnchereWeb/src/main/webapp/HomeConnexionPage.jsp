@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+        <%@page import="fr.eni.enchere.bo.*" %>
+        
     <!DOCTYPE html>
     <html>
 
@@ -19,9 +22,10 @@
 
     </head>
     <div class="form-control">
-        <h1>ENI-Enchère</h1>
+        <h1>ENI-Enchère</h1>       
         <dd><a href="/EniEnchereWeb/VendreArticleServlet">Vendre un article</a></dd>
-        <dd><a href="/EniEnchereWeb/ProfilServlet">Mon profil</a></dd>
+        <dd><a href="/EniEnchereWeb/MonProfilServlet">Mon profil</a></dd>
+        <dd><a href="/EniEnchereWeb/DeconnexionServlet">Déconnexion</a></dd>
         <p>${sessionScope.messageSucces}</p>
 
     </div>
@@ -68,162 +72,59 @@
                 <label for="ventes terminées">ventes terminées</label>
             </div>
             <br></br>
-            <div class="mb-3">
-                <label for="disabledSelect" class="col-form-label"><h5>Catégories</h5></label>
-                <select id="disabledSelect" name="categorie" class="form-select">
-                    <option id="toutes" value=1>Toutes</option>
-                    <option id="véhicules" value=2>Véhicules</option>
-                    <option id="mobiliers" value=3>Mobiliers</option>
-                    <option id="animaux" value=4>Animaux</option>
-                    <option id="informatiques" value=5>Informatiques</option>
-                </select>
+            
+            
 
+                    <div class="form-control">
+                        <div class="mb-3">
+                            <h3>Filtres:</h3>
+                            <label for="disabledSelect" class="col-form-label">
+                                <h5>Catégories</h5>
+                            </label>
+                            <select id="disabledSelect" name="categorie" class="form-select">
+						<c:forEach items="${categorieList}" var="categorie">
+                                    <option  value= 1> ${categorie.getLibelle()}</option>
+  						 </c:forEach>
+                            </select>
 
-                <label for="col-form-label"></label>
-                <input id="fld-recherche" class="form-control" type="text" required="required"
-                    placeholder="Le nom de l'article contient" />
-            </div>
-            <div class="mb-3">
-                <div id="bouton">
-                    <div class="panel-body text-center">
-                        <input type="submit" id="btRechercher" name="btRechercher" value="Rechercher" class="boutonForm"
-                            title="Rechercher" />
+                            <label for="col-form-label"></label>
+                            <input id="fld-recherche" class="form-control" type="text" required="required"
+                                placeholder="Le nom de l'article contient" />
+                        </div>
+                        <div class="mb-3">
+                            <div id="bouton">
+                                <div class="panel-body text-center">
+                                    <input type="submit" id="btRechercher" name="btRechercher" value="Rechercher"
+                                        class="boutonForm" title="Rechercher" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </form>
+
+                <div class="form-control">
+                    <c:forEach items="${articleList}" var="article">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img class="card-img" src="https://ae01.alicdn.com/kf/HTB1EDhcbRWD3KVjSZKPq6yp7FXaT/618-230-610mm-bricolage-ordinateur-PC-Gamer-bo-tier-en-forme-de-diamant-en-alliage-d.jpg" alt="Photo" />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Titre : <a
+                                            href="DetailMaVenteServlet?id=${article.getNoArticle() }">${article.getNomArticle()}</a>
+                                    </h5>
+                                    <p class="card-text">Prix : ${article.getPrixVente()} points</p>
+                                    <p class="card-text">Description : ${article.getDescription()}</p>
+                                    <p class="card-text">Debut de l'enchère : ${article.getDateDebutEnchere()}</p>
+                                    <p class="card-text">Fin de l'enchère : ${article.getDateFinEnchere()}</p>
+                                </div>
+                            </div>
+                        </div>
+                       <hr></hr>
+                    </c:forEach>
                 </div>
-            </div>
-        </div>
-</form>
 
 
-        <div class="form-control">
-            <div class="form-control">
-                <c:set var="nbArticleVendu" value="0" scope="page" />
-                <c:forEach var="articleVendu" items="${listeArticleVendu}">
-                    <c:set var="nbArticleVendu" value="${nbArticleVendu + 1}" scope="page" />
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img class="card-img" src="https://ae01.alicdn.com/kf/HTB1EDhcbRWD3KVjSZKPq6yp7FXaT/618-230-610mm-bricolage-ordinateur-PC-Gamer-bo-tier-en-forme-de-diamant-en-alliage-d.jpg">
-                        </div>
+            </body>
 
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Titre : ${articleVendu.nom}</h5>
-                                <p class="card-text">Prix : ${articleVendu.prixVente} points</p>
-                                <p class="card-text">Description : ${articleVendu.description}</p>
-                                <p class="card-text">Fin de l'enchère : ${articleVendu.dateFinEncheres}</p>
-                                <p class="card-text">Retrait : ${articleVendu.DateFinEnchere}</p>
-                                <p class="card-text">Vendeur : ${utilisateur.Pseudo}</p>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            </c:forEach>
-
-            <div class="form-control">
-                <c:set var="nbArticleVendu" value="0" scope="page" />
-                <c:forEach var="articleVendu" items="${listeArticleVendu}">
-                    <c:set var="nbArticleVendu" value="${nbArticleVendu + 2}" scope="page" />
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img class="card-img" src="http://www.cevennes-gite.eu/data/images/blog/blog-2020/dsc_3889w.jpg">
-                        </div>
-
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Titre : ${articleVendu.nom}</h5>
-                                <p class="card-text">Prix : ${articleVendu.prixVente} points</p>
-                                <p class="card-text">Description : ${articleVendu.description}</p>
-                                <p class="card-text">Fin de l'enchère : ${articleVendu.dateFinEncheres}</p>
-                                <p class="card-text">Retrait : ${articleVendu.DateFinEnchere}</p>
-                                <p class="card-text">Vendeur : ${utilisateur.Pseudo}</p>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
-
-        </div>
-
-        ------------------------------------------ A EFFACER: ----------------------------------------------s
-
-
-
-        <div class="form-control">
-            <div class="form-control">
-
-                <img src="https://ae01.alicdn.com/kf/HTB1EDhcbRWD3KVjSZKPq6yp7FXaT/618-230-610mm-bricolage-ordinateur-PC-Gamer-bo-tier-en-forme-de-diamant-en-alliage-d.jpg"
-                    height="150px" width="150px" class="img-rounded">
-
-
-                <table id="subscription-table" class="subscription-table">
-
-
-                    <tbody>
-
-                        <a aAfficher></a>
-
-                        <h5>PC Gamer pour travailler</h5>
-
-                        <tr>
-                            <th>Prix:</th>
-                            <td>210 points</td>
-                        </tr>
-                        <tr>
-                            <th>Classement</th>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <th>Fin de l'enchére:</th>
-                            <td>10/08/2018</td>
-                        </tr>
-                        <tr>
-                            <th>Retrait:</th>
-                            <td>10 allée des Alouettes 44800 Saint Herblain</td>
-                        </tr>
-                        <tr>
-                            <th>Vendeur:</th>
-                            <td>jojo44</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="form-control">
-
-                <img src="http://www.cevennes-gite.eu/data/images/blog/blog-2020/dsc_3889w.jpg" height="150px"
-                    width="150px" class="img-rounded">
-
-                <table id="subscription-table" class="subscription-table">
-                    <tbody>
-                        <h5>Rocket stove pour riz et pâtes</h5>
-
-                        <tr>
-                            <th>Prix:</th>
-                            <td>185 points</td>
-                        </tr>
-                        <tr>
-                            <th>Classement</th>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <th>Fin de l'enchére:</th>
-                            <td>09/10/2018</td>
-                        </tr>
-                        <tr>
-                            <th>Retrait:</th>
-                            <td>5 rue des Pinsons 44000 Nantes</td>
-                        </tr>
-                        <tr>
-                            <th>Vendeur:</th>
-                            <td>NineJea</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-
-
-        </div>
-    </body>
-
-    </html>
+            </html>

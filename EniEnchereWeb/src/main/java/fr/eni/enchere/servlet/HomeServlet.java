@@ -17,6 +17,8 @@ import javax.servlet.http.HttpSession;
 import fr.eni.enchere.bll.BLLManager;
 import fr.eni.enchere.bll.BusinessException;
 import fr.eni.enchere.bo.ArticleVendu;
+import fr.eni.enchere.bo.Categorie;
+import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dao.DAOFactory;
 
 
@@ -42,6 +44,7 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+	//Article
 		List<ArticleVendu> articleList = null;
 		try {
 			articleList = BLLManager.getInstance().getArticleManager().selectionnerTousLesArticles();
@@ -56,22 +59,21 @@ public class HomeServlet extends HttpServlet {
 		
 		//je le put dans la vue
 		request.setAttribute("articleList", articleList);
-		
-		//j'affiche la vue
-		getServletContext().getRequestDispatcher("/HomePage.jsp").forward(request, response);
 
 		
-		
-		
-     	try {
-			BLLManager.getInstance().getArticleManager().selectById(1);
-		} catch (BusinessException | ParseException e) {
+	// Categories
+		List<Categorie> categorieList = null;
+		try {
+			categorieList =  BLLManager.getInstance().getCategorieManager().selectionnerToutesLesCategories();
+		} catch (Exception e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
-     	
-//     	list <article> DAOFactory.getInstance().getUtilisateurDAO().select(user.getNoUtilisateur);
-     	
+		
+		request.setAttribute("categorieList", categorieList);		
+ 	
+		//j'affiche la vue
+		getServletContext().getRequestDispatcher("/HomePage.jsp").forward(request, response);
 	}
 
 	/**
@@ -79,16 +81,7 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idCategorie = request.getParameter("categorie");
-		
-//		public void Recuperation () {
-//			if idCategorie ==1 ...
-//		}
-		
-		
-		
 
-//select from ARTICLES_VENDUS where nom_article like fld-recherche or disabledSelect;		
-		
 		getServletContext().getRequestDispatcher("/HomePage.jsp").forward(request, response);
 	}	
 }
