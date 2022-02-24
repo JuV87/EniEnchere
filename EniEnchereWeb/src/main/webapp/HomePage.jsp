@@ -79,13 +79,13 @@
                                     <div class="card-body">
                                         <h5 class="card-title text-center">Titre : ${article.getNomArticle()}</h5>
                                         <a href="DetailMaVenteServlet?id=${article.getNoArticle() }">${article.getNomArticle()}</a>
-
-
                                     </div>
                                 </div>
                             </div>
                         </c:forEach>
                     </div>
+                    
+                    
 
                 
 

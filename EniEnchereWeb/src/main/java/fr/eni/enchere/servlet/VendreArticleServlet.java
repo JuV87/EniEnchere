@@ -69,7 +69,7 @@ public class VendreArticleServlet extends HttpServlet {
 		
 		String dateFinSTR = request.getParameter("date-fin");
 		String dateDebutSTR = request.getParameter("date-debut");
-		int categorieArticle = Integer.parseInt(request.getParameter("categorie"));		
+		String categorieArticle = request.getParameter("categorie");		
 	
 		Date dateF = null;
 		try {
@@ -86,18 +86,16 @@ public class VendreArticleServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		HttpSession session = request.getSession();
-
-
 		
 				ArticleVendu article = new ArticleVendu(-1, fieldsMap.get("nom"), 
 						fieldsMap.get("description"),  dateD,  dateF,
 						fieldsMap.get("prix-initial"),0);
 				
-				//article.setCategorieArticle(new Categorie("1", "jouet"));
+				article.setCategorieArticle(new Categorie(categorieArticle));
 				
 				article.setNoUtilisateur((int)session.getAttribute("id"));
-				article.setNoCategorie(categorieArticle);
-
+				//article.setNoCategorie(categorieArticle);
+				
 				
 				// 3: BLL
 				// Inserer que si le controle de surface fonctionne

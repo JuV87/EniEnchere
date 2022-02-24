@@ -31,7 +31,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String sqlSelectAll = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur " +  
 			" FROM utilisateurs";
 	private static final String sqlUpdate = "UPDATE utilisateurs SET pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?, ville=?, mot_de_passe=?, credit=?, cadministrateur=? where no_utilisateur=?";
-	private static final String sqlInsert = "INSERT INTO utilisateurs(pseudo,nom,prenom,email,telephone,rue,code_postal,ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String sqlInsert = "INSERT INTO utilisateurs(pseudo,nom,prenom,email,telephone,rue,code_postal,ville, mot_de_passe) VALUES (?,?,?,?,?,?,?,?,?)";
 	private static final String sqlDelete = "DELETE FROM utilisateurs WHERE no_utilisateur=?";
 	private static final String sqlSelectByLogin = "SELECT no_utilisateur, pseudo, nom, prenom, email " + "FROM UTILISATEURS where email = ? AND mot_de_passe = ?";
 	private static final String sqlSelectByEmail = "SELECT no_utilisateur, pseudo, nom, prenom, email " + "FROM UTILISATEURS where email = ?";
@@ -168,9 +168,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			rqt.setString(8, user.getCodePostal());
 			rqt.setString(9, user.getVille());
 			rqt.setString(10, user.getMotDePasse());
-			rqt.setInt(11, user.getCredit());
-			rqt.setInt(12, user.getAdministrateur());
-
+			
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {

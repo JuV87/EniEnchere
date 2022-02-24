@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <!DOCTYPE html>
 <html>
 
@@ -25,51 +26,77 @@
 <body>
 
 	<h1>ENI-Enchères</h1>
+
+	<div class="col text-center">
+		<h2>Détail vente :</h2>
+	</div>
 	<div style="padding: 1rem">
 		<div class="row">
 			<div class="col-sm-3">
-				<h6 class="mb-0" style="padding: 1rem">Description produit</h6>
-			</div>
-		</div>
-		<div style="padding: 1rem">
-			<div class="row">
-				<div class="col-sm-3">
-					<div class="form-group">
-						<div class="text-center">
-							<img
-								src="https://ae01.alicdn.com/kf/HTB1EDhcbRWD3KVjSZKPq6yp7FXaT/618-230-610mm-bricolage-ordinateur-PC-Gamer-bo-tier-en-forme-de-diamant-en-alliage-d.jpg"
-								height="150px" width="150px" class="img-rounded">
-						</div>
-					</div>
-				</div>
+				<tr class="mb-0" style="padding: 1rem">
+					<th >Article :</th>
+					<td> ${article.getNomArticle()}</td>
+				</tr>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-3">
-				<h6 class="mb-0" style="padding: 1rem">Meilleur offre :</h6>
+				<tr class="mb-0" style="padding: 1rem">
+					<th >Description :</th>
+					<td> ${article.getDescription()}</td>
+				</tr>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-3">
-				<h6 class="mb-0" style="padding: 1rem">Mise à prix :</h6>
+				<tr class="mb-0" style="padding: 1rem">
+					<th >Catégorie :</th>
+					<td> ${article.getCategorieArticle()}</td>
+				</tr>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-3">
-				<h6 class="mb-0" style="padding: 1rem">Fin de l'enchère :</h6>
+				<tr class="mb-0" style="padding: 1rem">
+					<th >Meilleure offre :</th>
+					<td> ${article.getPrixVente()}</td>
+				</tr>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-3">
-				<h6 class="mb-0" style="padding: 1rem">Retrait :</h6>
+				<tr class="mb-0" style="padding: 1rem">
+					<th >Mise à prix :</th>
+					<td> ${article.getMiseAPrix()}</td>
+				</tr>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-3">
-				<h6 class="mb-0" style="padding: 1rem">Vendeur :</h6>
+				<tr class="mb-0" style="padding: 1rem">
+					<th >Fin de l'enchère : </th>
+					<td> ${article.getDateFinEnchere()}</td>
+				</tr>
 			</div>
 		</div>
-		<div>
+		<div class="row">
+			<div class="col-sm-3">
+				<tr class="mb-0" style="padding: 1rem">
+					<th >Retrait :</th>
+					<td> ${article.getLieuRetrait()}</td>
+				</tr>
+			</div>
+		</div>
+	
+	<div class="row">
+			<div class="col-sm-3">
+				<tr class="mb-0" style="padding: 1rem">
+					<th >Vendeur : </th>
+					<td> ${article.getUser().getNom()}</td>
+				</tr>
+			</div>
+		</div>
+	</div>
 			<button for="enregistrer" type="button" class="btn btn-primary">Annuler
 				la vente</button>
 			<button for="supprimercompte" type="button" class="btn btn-primary "

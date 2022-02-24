@@ -1,11 +1,16 @@
 package fr.eni.enchere.servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import fr.eni.enchere.bll.BLLManager;
+import fr.eni.enchere.bo.ArticleVendu;
 
 /**
  * Servlet implementation class HomeConnexionServlet
@@ -26,7 +31,16 @@ public class HomeConnexionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<ArticleVendu> articleList = null;
+		try {
+			articleList = BLLManager.getInstance().getArticleManager().selectionnerTousLesArticles();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		request.setAttribute("articleList", articleList);
 		getServletContext().getRequestDispatcher("/HomeConnexionPage.jsp").forward(request, response);
+
 	}
 
 	

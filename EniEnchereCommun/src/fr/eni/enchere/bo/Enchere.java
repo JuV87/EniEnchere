@@ -13,6 +13,13 @@ public class Enchere {
 	public Enchere() {
 		
 	}
+	public Enchere(Utilisateur user, ArticleVendu art, Date dateEnchere, int montantEnchere) {
+		this.setUser(user);
+		this.setArt(art);
+		this.setDateEnchere(dateEnchere);
+		this.setMontantEnchere(montantEnchere);
+	}
+	
 	public Enchere(Date dateEnchere, int montantEnchere) {
 		this.setDateEnchere(dateEnchere);
 		this.setMontantEnchere(montantEnchere);
