@@ -6,6 +6,7 @@ import java.util.List;
 
 import fr.eni.enchere.bll.utils.EniConstantes;
 import fr.eni.enchere.bo.ArticleVendu;
+import fr.eni.enchere.bo.Categorie;
 import fr.eni.enchere.bo.Enchere;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dao.ArticleDAO;
@@ -21,11 +22,13 @@ public class ArticleManager {
 	
 			try {
 				art = DAOFactory.getInstance().getArticleDAO().selectBynoArticle(noArticle);
+				Utilisateur user = DAOFactory.getInstance().getUtilisateurDAO().selectBynoUtilisateur(art.getNoUtilisateur());
+				art.setUser(user);
+				art.setCategorieArticle(new Categorie(0, "catégorie qui nexiste pas"));
 			} catch (DALException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
 		return art;
 	}
 
@@ -52,10 +55,10 @@ public class ArticleManager {
 		}
 	}
 	
-	public boolean encherir(ArticleVendu article, Utilisateur user, int prix) {
+	public boolean encherir(ArticleVendu article, Utilisateur loggedUser, int prix) {
 		int nbError=0;
 		Enchere enchere=null;
-		Utilisateur	loggedUser=null;
+	
 		
 		//DAO appel 1
 		try {
@@ -63,23 +66,27 @@ public class ArticleManager {
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		if (prix<loggedUser.getCredit()) {
+		if (prix<=loggedUser.getCredit()) {
 		
 		}else {
 			nbError++;
 		}
 
 		//DAO appel 2
-	
+
 		try {
-			DAOFactory.getInstance().getEnchereDAO().selectBestEnchere(article);
+			enchere = DAOFactory.getInstance().getEnchereDAO().selectBestEnchere(article);
+
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if (prix>enchere.getMontantEnchere()) {
-			
-		}else {
+		if (enchere!=null && prix>enchere.getMontantEnchere()) {
+
+		}
+		else if(enchere==null){
+
+		}
+		else {
 			nbError++;
 		}
 		
@@ -87,17 +94,21 @@ public class ArticleManager {
 		if (nbError>0) {
 			return false;
 		}else {
-			Enchere NouvelleEnchere = new Enchere (new Date(), prix);
+			Enchere nouvelleEnchere = new Enchere (new Date(), prix);
+			nouvelleEnchere.setUser(loggedUser);
+			nouvelleEnchere.setArt(article);
+			try {
+				DAOFactory.getInstance().getEnchereDAO().insert(nouvelleEnchere);
+				//DAOFactory.getInstance().getArticleDAO().updateEnchere(article);
+			} catch (DALException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return false;
 		}
 
 		//DAO appel 3
-		try {
-			DAOFactory.getInstance().getEnchereDAO().insert(null);
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return false;
+		
 
 	}
 	

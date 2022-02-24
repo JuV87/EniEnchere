@@ -79,7 +79,7 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.sendRedirect("HomeConnexionServlet");
-			session.setAttribute("messageSucces", "Bonjour, "+user.getPrenom()+" " +user.getNom()+" vous êtes connecté(e) !");
+			session.setAttribute("messageSucces", "Bonjour, "+user.getPrenom()+" " +user.getNom()+" vous ï¿½tes connectï¿½(e) !");
 		}
 		else {
 			// sinon erreur mot de passe

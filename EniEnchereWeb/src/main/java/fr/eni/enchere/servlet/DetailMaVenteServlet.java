@@ -40,6 +40,7 @@ public class DetailMaVenteServlet extends HttpServlet {
 		
 		try {
 			article = BLLManager.getInstance().getArticleManager().selectById(idArticle);
+			
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +49,7 @@ public class DetailMaVenteServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("article", article);
-		   RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailMaVente.jsp");
+		   RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Encherir.jsp");
 	        rd.forward(request, response);
 	
     }
