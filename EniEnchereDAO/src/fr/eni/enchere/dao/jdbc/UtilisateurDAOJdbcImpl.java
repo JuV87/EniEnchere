@@ -30,8 +30,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			" FROM utilisateurs where no_utilisateur = ?";
 	private static final String sqlSelectAll = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur " +  
 			" FROM utilisateurs";
-	private static final String sqlUpdate = "UPDATE utilisateurs SET pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?, ville=?, mot_de_passe=?, credit=?, cadministrateur=? where no_utilisateur=?";
-	private static final String sqlInsert = "INSERT INTO utilisateurs(pseudo,nom,prenom,email,telephone,rue,code_postal,ville, mot_de_passe) VALUES (?,?,?,?,?,?,?,?,?)";
+	private static final String sqlUpdate = "UPDATE utilisateurs SET pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?, ville=?, mot_de_passe=?, credit=?, administrateur=? where no_utilisateur=?";
+	private static final String sqlInsert = "INSERT INTO utilisateurs(pseudo,nom,prenom,email,telephone,rue,code_postal,ville, mot_de_passe, credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String sqlDelete = "DELETE FROM utilisateurs WHERE no_utilisateur=?";
 	private static final String sqlSelectByLogin = "SELECT no_utilisateur, pseudo, nom, prenom, email " + "FROM UTILISATEURS where email = ? AND mot_de_passe = ?";
 	private static final String sqlSelectByEmail = "SELECT no_utilisateur, pseudo, nom, prenom, email " + "FROM UTILISATEURS where email = ?";
@@ -158,17 +158,20 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlUpdate);
-			rqt.setInt(1, user.getNoUtilisateur());
-			rqt.setString(2, user.getPseudo());
-			rqt.setString(3, user.getNom());
-			rqt.setString(4, user.getPrenom());
-			rqt.setString(5, user.getEmail());
-			rqt.setString(6, user.getTelephone());
-			rqt.setString(7, user.getRue());
-			rqt.setString(8, user.getCodePostal());
-			rqt.setString(9, user.getVille());
-			rqt.setString(10, user.getMotDePasse());
 			
+			rqt.setString(1, user.getPseudo());
+			rqt.setString(2, user.getNom());
+			rqt.setString(3, user.getPrenom());
+			rqt.setString(4, user.getEmail());
+			rqt.setString(5, user.getTelephone());
+			rqt.setString(6, user.getRue());
+			rqt.setString(7, user.getCodePostal());
+			rqt.setString(8, user.getVille());
+			rqt.setString(9, user.getMotDePasse());
+			rqt.setInt(10, user.getCredit());
+			rqt.setInt(11, user.getAdministrateur());
+			rqt.setInt(12, user.getNoUtilisateur());
+
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {

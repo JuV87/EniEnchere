@@ -53,14 +53,39 @@ public class ModificationProfileServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
+		// Je récupere l'utilisateur connecter
 		Utilisateur user = null;
+		 int id = (int)session.getAttribute("id");
+
+
+	        try {
+	            user = BLLManager.getInstance().getUtilisateurManager().selectById(id);
+	        } catch (BusinessException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	        
+	        // Je récupere les nouvelles de l'utilisateur
+	        user.setPseudo(request.getParameter("pseudo"));
+	        user.setNom(request.getParameter("name"));
+	        user.setPrenom(request.getParameter("prenom"));
+	        user.setEmail(request.getParameter("email"));
+	        user.setTelephone(request.getParameter("phone"));
+	        user.setRue(request.getParameter("rue"));
+	        user.setCodePostal(request.getParameter("codePostale"));
+	        user.setVille(request.getParameter("city"));
+	        user.setMotDePasse(request.getParameter("password"));
+	        
+	       
+		// enregister utilisateur
+	        
 		try {
 			BLLManager.getInstance().getUtilisateurManager().update(user);
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		response.sendRedirect("HomeConnexionServlet");
         
     }
 }

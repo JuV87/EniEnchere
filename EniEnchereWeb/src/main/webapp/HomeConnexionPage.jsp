@@ -20,9 +20,10 @@
 
     </head>
     <div class="form-control">
-        <h1>ENI-Enchère</h1>
+        <a href="/HomeConnexionServlet" style="color:#000000;"> ENI - Enchères </a>
         <dd><a href="/EniEnchereWeb/VendreArticleServlet">Vendre un article</a></dd>
         <dd><a href="/EniEnchereWeb/ProfilServlet">Mon profil</a></dd>
+        <dd><a href="/EniEnchereWeb/DeconnexionServlet">Deconnecter</a></dd>
         <p>${sessionScope.messageSucces}</p>
 
     </div>

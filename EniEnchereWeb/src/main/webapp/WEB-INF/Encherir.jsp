@@ -24,15 +24,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>ENI-Enchères</h1>
+	<h1><a href="HomeConnexionServlet" style="color:#000000;">ENI-Enchères</a></h1>
 	<div class="col text-center">
 		<h2>Détail vente</h2>
 	</div>
-<div style="padding: 1rem">
-		<div class="row">
-			<div class="col-sm-3">
-			<h6>PC gamer pour travailler</h6>
-				<div class="form-group">
+	<div style="padding: 1rem">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<h6>PC gamer pour travailler</h6>
 					<div class="text-center">
 						<img
 							src="https://ae01.alicdn.com/kf/HTB1EDhcbRWD3KVjSZKPq6yp7FXaT/618-230-610mm-bricolage-ordinateur-PC-Gamer-bo-tier-en-forme-de-diamant-en-alliage-d.jpg"
@@ -42,11 +42,14 @@
 			</div>
 		</div>
 	</div>
+	
+
 	<div style="padding: 1rem">
+		
 	<div class="row">
 			<div class="col-sm-3">
 				<h6>Retrait</h6>
-				<div class="form-control">
+				<div class="form-control" class="text-md-center">
 					<table id="subscription-table" class="subscription-table">
 						<tbody>
 							<tr>
@@ -84,7 +87,7 @@
 									name="tentacles" min="1" max="150"></td>
 								<td>
 									<button onclick="window.location.href = './MonProfilServlet';"
-										type="button" class="btn btn-primary" data-bs-toggle="button"
+										type="submit" class="btn btn-primary" data-bs-toggle="button"
 										autocomplete="off" aria-pressed="true">Enchérir</button>
 								</td>
 							</tr>

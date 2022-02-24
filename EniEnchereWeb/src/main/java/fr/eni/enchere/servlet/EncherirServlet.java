@@ -56,6 +56,6 @@ public class EncherirServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		//appel à la BLL
-		BLLManager.getInstance().getArticleManager().encherir(art, user, prix);
+		//BLLManager.getInstance().getArticleManager().encherir(art, user, prix);
 	}
 }
