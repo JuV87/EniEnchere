@@ -1,7 +1,6 @@
 package fr.eni.enchere.servlet;
 
 import java.io.IOException;
-import java.text.ParseException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,23 +8,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import fr.eni.enchere.bll.ArticleManager;
+import org.apache.tomcat.jni.User;
+
 import fr.eni.enchere.bll.BLLManager;
 import fr.eni.enchere.bll.BusinessException;
-import fr.eni.enchere.bo.ArticleVendu;
+import fr.eni.enchere.bll.UtilisateurManager;
 
 /**
- * Servlet implementation class DetailMaVenteServlet
+ * Servlet implementation class ForgotPassword
  */
-@WebServlet("/DetailMaVenteServlet")
-public class DetailMaVenteServlet extends HttpServlet {
+@WebServlet("/ForgetPassword")
+public class ForgetPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailMaVenteServlet() {
+    public ForgetPasswordServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,31 +35,33 @@ public class DetailMaVenteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int idArticle = Integer.parseInt(request.getParameter("id"));
-		ArticleVendu article =null;
-		
-		try {
-			article = BLLManager.getInstance().getArticleManager().selectById(idArticle);
-		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		request.setAttribute("article", article);
-		   RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/DetailMaVente.jsp");
-	        rd.forward(request, response);
 	
-    }
-		
+		response.getWriter().append("/ForgetPassword.jsp ").append(request.getContextPath());
+	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+			
+		
+		
+			// recuperation des parametres de la requette
+		String email=request.getParameter("email");
+		String password=request.getParameter("password");
+		if (email != null )
+			
+			 //soumettre 
+		
+		 HttpSession  maSession = request.getSession();
+		 maSession.setAttribute(password, email);
+		 
+		 RequestDispatcher dispatcher = request.getRequestDispatcher("/LoginServlet");
+		 dispatcher.forward(request, response);
+		 
+		
+		 
+	
 	}
 
 }

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <!DOCTYPE html>
     <html>
 
@@ -93,59 +94,83 @@
                 </div>
             </div>
         </div>
-</form>
+	<div class="form-control">
+		<c:forEach items="${articleList}" var="article">
+			<div class="row no-gutters">
+				<div class="col-md-4">
+					<img class="card-img" src="WEB-INF/images/mshopping.png"
+						alt="Photo d'ordinateur" />>
+				</div>
+				<div class="col-md-8">
+					<div class="card-body">
+						<h5 class="card-title text-center">Titre : ${article.getNomArticle()}</h5>
+						<a href="DetailMaVenteServlet?id=${article.getNoArticle()}">${article.getNomArticle()}</a>
+					</div>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+
+	<div class="form-control">
+		<div class="form-control">
+			<c:set var="nbArticleVendu" value="0" scope="page" />
+			<c:forEach var="articleVendu" items="${listeArticleVendu}">
+				<c:set var="nbArticleVendu" value="${nbArticleVendu + 1}"
+					scope="page" />
+				<div class="row no-gutters">
+					<div class="col-md-4">
+						<img class="card-img"
+							src="https://ae01.alicdn.com/kf/HTB1EDhcbRWD3KVjSZKPq6yp7FXaT/618-230-610mm-bricolage-ordinateur-PC-Gamer-bo-tier-en-forme-de-diamant-en-alliage-d.jpg">
+					</div>
+
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title text-center">Titre :
+								${articleVendu.nom}</h5>
+							<p class="card-text">Prix : ${articleVendu.prixVente} points</p>
+							<p class="card-text">Description :
+								${articleVendu.description}</p>
+							<p class="card-text">Fin de l'enchère :
+								${articleVendu.dateFinEncheres}</p>
+							<p class="card-text">Retrait : ${articleVendu.DateFinEnchere}</p>
+							<p class="card-text">Vendeur : ${utilisateur.Pseudo}</p>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
 
 
-        <div class="form-control">
-            <div class="form-control">
-                <c:set var="nbArticleVendu" value="0" scope="page" />
-                <c:forEach var="articleVendu" items="${listeArticleVendu}">
-                    <c:set var="nbArticleVendu" value="${nbArticleVendu + 1}" scope="page" />
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img class="card-img" src="https://ae01.alicdn.com/kf/HTB1EDhcbRWD3KVjSZKPq6yp7FXaT/618-230-610mm-bricolage-ordinateur-PC-Gamer-bo-tier-en-forme-de-diamant-en-alliage-d.jpg">
-                        </div>
+		<div class="form-control">
+			<c:set var="nbArticleVendu" value="0" scope="page" />
+			<c:forEach var="articleVendu" items="${listeArticleVendu}">
+				<c:set var="nbArticleVendu" value="${nbArticleVendu + 2}"
+					scope="page" />
+				<div class="row no-gutters">
+					<div class="col-md-4">
+						<img class="card-img"
+							src="http://www.cevennes-gite.eu/data/images/blog/blog-2020/dsc_3889w.jpg">
+					</div>
 
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Titre : ${articleVendu.nom}</h5>
-                                <p class="card-text">Prix : ${articleVendu.prixVente} points</p>
-                                <p class="card-text">Description : ${articleVendu.description}</p>
-                                <p class="card-text">Fin de l'enchère : ${articleVendu.dateFinEncheres}</p>
-                                <p class="card-text">Retrait : ${articleVendu.DateFinEnchere}</p>
-                                <p class="card-text">Vendeur : ${utilisateur.Pseudo}</p>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            </c:forEach>
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title text-center">Titre :
+								${articleVendu.nom}</h5>
+							<p class="card-text">Prix : ${articleVendu.prixVente} points</p>
+							<p class="card-text">Description :
+								${articleVendu.description}</p>
+							<p class="card-text">Fin de l'enchère :
+								${articleVendu.dateFinEncheres}</p>
+							<p class="card-text">Retrait : ${articleVendu.DateFinEnchere}</p>
+							<p class="card-text">Vendeur : ${utilisateur.Pseudo}</p>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
 
-            <div class="form-control">
-                <c:set var="nbArticleVendu" value="0" scope="page" />
-                <c:forEach var="articleVendu" items="${listeArticleVendu}">
-                    <c:set var="nbArticleVendu" value="${nbArticleVendu + 2}" scope="page" />
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img class="card-img" src="http://www.cevennes-gite.eu/data/images/blog/blog-2020/dsc_3889w.jpg">
-                        </div>
-
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Titre : ${articleVendu.nom}</h5>
-                                <p class="card-text">Prix : ${articleVendu.prixVente} points</p>
-                                <p class="card-text">Description : ${articleVendu.description}</p>
-                                <p class="card-text">Fin de l'enchère : ${articleVendu.dateFinEncheres}</p>
-                                <p class="card-text">Retrait : ${articleVendu.DateFinEnchere}</p>
-                                <p class="card-text">Vendeur : ${utilisateur.Pseudo}</p>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
-
-        </div>
-
-        ------------------------------------------ A EFFACER: ----------------------------------------------s
+	------------------------------------------ A EFFACER: ----------------------------------------------s
 
 
 
