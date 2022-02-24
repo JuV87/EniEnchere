@@ -19,6 +19,7 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+<<<<<<< Updated upstream
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vendre article</title>
@@ -61,6 +62,68 @@
 						<h6>Description :</h6>
 						<textarea class="form-control" id="bio" rows="3"
 							name="description"></textarea>
+=======
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Vendre article</title>
+	</head>
+
+	<body>
+		<form method="post" action="VendreArticleServlet">
+			<h1>
+				<a href="/HomeConnexionServlet"> ENI - Enchères </a>
+			</h1>
+			<div class="col text-center">
+				<h2>Nouvelle vente</h2>
+			</div>
+
+			<div style="padding: 1rem">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="nom"></label>
+							<h6>Article :</h6>
+							<input type="text" class="form-control" id="article" name="nom">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+					<div class="form-control">
+						<div class="mb-3">
+							<h3>Filtres:</h3>
+							<label for="disabledSelect" class="col-form-label"><h5>Catégories</h5></label>
+							<select id="disabledSelect" name="categorie" class="form-select">
+								<option id="toutes" value=1>Toutes</option>
+								<option id="véhicules" value=2>Véhicules</option>
+								<option id="mobiliers" value=3>Mobiliers</option>
+								<option id="animaux" value=4>Animaux</option>
+								<option id="informatiques" value=5>Informatiques</option>
+							</select>
+
+
+						</div>
+					</div>
+					<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label for="bio"></label>
+							<h6>Description :</h6>
+							<textarea class="form-control" id="bio" rows="3" name="description"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<h6>Photo de l'article</h6>
+					</div>
+					<div class="col-sm-6">
+						<label class="form-label" for="customFile"></label>
+						<input type="file" class="form-control" id="customFile"  />
+>>>>>>> Stashed changes
 					</div>
 				</div>
 			</div>

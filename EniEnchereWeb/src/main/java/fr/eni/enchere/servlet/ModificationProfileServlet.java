@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.enchere.bll.BLLManager;
 import fr.eni.enchere.bll.BusinessException;
 import fr.eni.enchere.bll.UtilisateurManager;
 import fr.eni.enchere.bo.Utilisateur;
@@ -33,14 +34,6 @@ public class ModificationProfileServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		getServletContext().getRequestDispatcher("/WEB-INF/ModificationProfil.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
         UtilisateurManager profilUser = new UtilisateurManager();
         int id = (int)session.getAttribute("id");
@@ -51,8 +44,24 @@ public class ModificationProfileServlet extends HttpServlet {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        request.setAttribute("profil", user);
-        request.getRequestDispatcher("/WEB-INF/ModificationProfil.jsp").forward(request,response); 
+        request.setAttribute("profil", user); 
+		getServletContext().getRequestDispatcher("/WEB-INF/ModificationProfil.jsp").forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
+		Utilisateur user = null;
+		try {
+			BLLManager.getInstance().getUtilisateurManager().update(user);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
     }
 }
 		
