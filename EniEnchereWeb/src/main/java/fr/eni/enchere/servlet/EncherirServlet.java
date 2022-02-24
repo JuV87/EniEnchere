@@ -62,9 +62,12 @@ public class EncherirServlet extends HttpServlet {
 		//appel à la BLL
 		BLLManager.getInstance().getArticleManager().encherir(art, user, prix);
 		
+		
+		
 		request.setAttribute("article", art);
 		request.setAttribute("user", user);
-		   RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/Encherir.jsp");
-	        rd.forward(request, response);
+		response.sendRedirect("HomeConnexionServlet");
+		 //  RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/HomeConnexionServlet");
+	    //    rd.forward(request, response);
 	}
 }

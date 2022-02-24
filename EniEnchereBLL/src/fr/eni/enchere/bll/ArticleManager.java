@@ -99,6 +99,7 @@ public class ArticleManager {
 			nouvelleEnchere.setArt(article);
 			try {
 				DAOFactory.getInstance().getEnchereDAO().insert(nouvelleEnchere);
+				//DAOFactory.getInstance().getArticleDAO().updateEnchere(article);
 			} catch (DALException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -27,6 +27,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String sqlSelectAll = "SELECT * " +  
 			" FROM articles_vendus";
 	private static final String sqlUpdate = "UPDATE articles_vendus SET nom_article=?,nom_article=?,date_debut_encheres=?,date_fin_encheres=?,prix_initial=?,prix_vente=?, where no_article=?";
+	private static final String sqlUpdateEnchere = "UPDATE articles_vendus SET prix_vente=? where no_article=?";
+
 	private static final String sqlInsert = "INSERT INTO articles_vendus(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur, no_categorie) VALUES (?,?,?,?,?,?,?,?)";
 	private static final String sqlDelete = "DELETE FROM articles_vendus WHERE no_article=?";
 	private static final String SELECT_ARTICLE_BY_ID = "SELECT * FROM ARTICLES_VENDUS a LEFT OUTER JOIN UTILISATEURS u ON a.no_utilisateur=u.no_utilisateur LEFT OUTER JOIN ENCHERES e ON a.no_article=e.no_article LEFT OUTER JOIN CATEGORIES c ON a.no_categorie=c.no_categorie WHERE a.no_article=?";
@@ -180,6 +182,38 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			}
 		}
 	}
+	
+	@Override
+	public void updateEnchere(ArticleVendu art) throws DALException {
+
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		try {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+	
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlUpdateEnchere);
+			rqt.setInt(1, art.getPrixVente());
+			rqt.setInt(2, art.getNoArticle());
+			
+			rqt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DALException("Update article failed - " + art, e);
+		} finally {
+			try {
+				if (rqt != null){
+					rqt.close();
+				}
+				if(cnx !=null){
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	
 	@Override
 	public ArticleVendu selectArticleEnVente(Utilisateur user) throws DALException {

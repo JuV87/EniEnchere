@@ -26,6 +26,8 @@ public interface ArticleDAO {
 
 	public ArticleVendu selectArticleEnVente(Utilisateur user) throws DALException;
 
+	public void updateEnchere(ArticleVendu art) throws DALException;
+
 }
 
 
