@@ -109,7 +109,7 @@ public class VendreArticleServlet extends HttpServlet {
 					}
 					else {
 						// Erreur
-						response.sendRedirect("MonProfilServlet");
+						response.sendRedirect("HomeConnexionServlet");
 					}
 				}
 				
