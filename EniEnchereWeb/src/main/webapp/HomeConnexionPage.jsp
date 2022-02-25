@@ -24,7 +24,7 @@
     <div class="form-control">
         <h1>ENI-Enchère</h1>       
         <dd><a href="/EniEnchereWeb/VendreArticleServlet">Vendre un article</a></dd>
-        <dd><a href="/EniEnchereWeb/MonProfilServlet">Mon profil</a></dd>
+        <dd><a href="/EniEnchereWeb/ProfilServlet">Mon profil</a></dd>
         <dd><a href="/EniEnchereWeb/DeconnexionServlet">Déconnexion</a></dd>
         <p>${sessionScope.messageSucces}</p>
 
